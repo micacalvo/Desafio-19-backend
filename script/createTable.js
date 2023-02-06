@@ -1,4 +1,4 @@
-import clientConnection from "../configClient.js";
+import clientConnection from "../src/configClient.js";
 
 //Función autoejecutable. Creación de tablas
 (async() => {

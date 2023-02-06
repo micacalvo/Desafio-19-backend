@@ -17,6 +17,7 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/estilos.css" />
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
@@ -76,7 +77,7 @@
         <div>
           <h1>Centro de mensajes</h1>
           <form onsubmit="return addMessage(this)">
-            <input type="email" id="id" placeholder="Email *" required />
+            <input type="email" id="id" placeholder="Email" required />
             <p></p>
             <input type="text" id="primernombre" placeholder="Nombre" required />
             <p></p>

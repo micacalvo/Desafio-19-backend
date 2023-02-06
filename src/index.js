@@ -1,19 +1,24 @@
 import express from 'express';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import {Server as HTTPServer} from 'http';
-import {Server as IOServer} from 'socket.io';
-//import util from 'util';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
+
+import {Server as HTTPServer} from 'http';
+import {Server as IOServer} from 'socket.io';
+
+import bcrypt from '../src/bcrypt/bcrypt.js';
 //import path from 'path'; //Para poder usar los archivos de las vistas, accede a las rutas absolutas
 import dotenv from 'dotenv';
+dotenv.config();
 
 import productosApi from './router/api/productosApi.js';
+
 import authWebRouter from './router/web/auth.js';
 import productosWebRouter from './router/web/home.js';
-import mensajesApi from './router/web-socket/mensajes.js';
-dotenv.config();
+
+import mensajes from './router/web-socket/mensajes.js';
+import productos from './router/web-socket/productos.js'
 
 //Instancio servidor
 const app = express()
@@ -25,31 +30,17 @@ const io = new IOServer(httpServer)
 //Configuro el socket
 
 io.on('connection', async socket => {
-    productosApi(socket, io.sockets)
-    mensajesApi(socket, io.sockets)
+    productos(socket, io.sockets)
+    mensajes(socket, io.sockets)
 });
-
-//Inicializo passport
-app.use(passport.initialize())
 
 //Middlewares
 app.use(express.json()) //Porque trabajo con formularios
 app.use(express.urlencoded({extended: true})) //Para postman
 app.use(express.static('public'))
 
-app.use(session({
-    store: MongoStore.create({mongoUrl: 'mongodb://0.0.0.0:27017/dbmica'}),
-    secret: 'abcd',
-    resave: false,
-    saveUninitialized: false,
-    rolling: true,
-    cookie: {
-        maxAge: 50000
-    }
-}))
-
 app.use(cookieParser())
-//app.use(util.createOnMongoStore())
+app.use(bcrypt.createOnMongoStore())
 
 // Middleware Passport
 app.use(passport.initialize())
@@ -64,8 +55,8 @@ app.use(session({
         maxAge: 20000 //20sg
     }
 }))
-
-app.use('/api/sessions', session)
+const sessions = authWebRouter
+app.use('/api/sessions', sessions)
 //req.session.passport.user
 
 // Rutas del servidor API REST

@@ -1,9 +1,10 @@
 //Función de autenticación
 export function authApi(req, res, next) {
-    if (req.session?.nombre === nombre && req.session?.admin) {
-        return next()
+    if (req.session?.nombre) {
+        next()
+    } else {
+        res.status(401).json({ error: 'No autorizado' })
     }
-    return res.status(401).send('Error de autenticacion')
 }
 
 export function authWeb(req, res, next) {

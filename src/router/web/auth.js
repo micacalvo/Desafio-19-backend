@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import Session from '../../contenedores/ContenedorSession.js';
-import util from '../../funcionUtil/util.js';
+import bcrypt from '../../bcrypt/bcrypt.js';
 import path from 'path'
 import passport from 'passport'
 import { Strategy } from "passport-local";
@@ -17,63 +17,63 @@ passport.use(
         passReqToCallback: true,
       },
       async (req, emailUser, passwordUser, done) => {
-        const usuario = await sessionService.buscarUsuarioPorEmail(emailUser)
+        const usuario = await sessionService.buscarUsuarioEmail(emailUser)
         if (!usuario) return done(null, false)
-        if (!util.isValidPassword(usuario, passwordUser)) return done(null, false)
+        if (!bcrypt.isValidPassword(usuario, passwordUser)) return done(null, false)
         return done(null, usuario)
       }
     )
   )
-  
 // Serialize
-passport.serializeUser((user, done) => {
+  passport.serializeUser((user, done) => {
     done(null, user.email)
-})
-
-  // Deserialize
-passport.deserializeUser(async (email, done) => {
-    const user = await sessionService.buscarUsuarioPorEmail(email)
+  })
+  
+// Deserialize
+  passport.deserializeUser(async (email, done) => {
+    const user = await sessionService.buscarUsuarioEmail(email)
     done(null, user)
-})
+  })
 
-//Rutas 
+
+//Rutas
 
 authWebRouter.get('/', (req, res) => {
-    res.redirect('/home')
+    res.redirect('/main')
 })
 
 authWebRouter.get('/login', (req, res) => {
     if(req.session.passport?.user){
-        res.redirect('/home')
+        res.redirect('/main')
     }else{
-        res.sendFile('login.html', {root: 'public'})
+    res.redirect('/login')
     }
 })
 
-authWebRouter.get('/registro', (req, res)=>{
-    res.sendFile('registro.html', {root: 'public'})
-})
-
-//Para capturar los datos del form y ver si el usuario existe
-authWebRouter.post('/login',
+authWebRouter.post(
+    '/login',
     passport.authenticate('login', {
-      successRedirect: '/home',
+      successRedirect: '/main',
       failureRedirect: '/login-error',
       passReqToCallback: true,
-}), (req, res) => {
+    }),
+    (req, res) => {
       res.cookie('userEmail', req.session.passport.user)
     }
-)
+  )
 
-//Este post para dar de alta al usuario
-authWebRouter.post('/registro', async(req, res)=>{
+authWebRouter.get('/register', (req, res)=>{
+    res.redirect('/register')
+})
+
+authWebRouter.post('/register', async(req, res)=>{
   const registerData = { email: req.body.registerEmail, password: req.body.registerPassword }
   const response = await sessionService.registrarUsuario(registerData)
   if (response) {
     console.log("Registrado correctamente");
     res.redirect('/login')
   } else {
-    res.redirect('/registro-error')
+    res.redirect('/register-error')
   }
 })
 
@@ -82,7 +82,7 @@ authWebRouter.get('/logout', (req, res) => {
     if (nombre) {
         req.session.destroy(err => {
             if (!err) {
-                res.render(path.join(process.cwd(), '/public/logout.html'), { nombre })
+                res.redirect('/logout')
             } else {
                 res.redirect('/')
             }
@@ -92,12 +92,12 @@ authWebRouter.get('/logout', (req, res) => {
     }
 })
 
-authWebRouter.get('/registro-error', (req, res) =>{
-    res.sendFile('registro-error.html', {root: 'public'})
+authWebRouter.get('/register-error', (req, res) =>{
+    res.redirect('/register-error')
 })
 
 authWebRouter.get('/login-error', (req, res) =>{
-    res.sendFile('login-error.html', {root: 'public'})
+    res.redirect('/login-error')
 })
 
 export default authWebRouter
