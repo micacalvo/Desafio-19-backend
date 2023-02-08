@@ -39,14 +39,14 @@ passport.use(
 //Rutas
 
 authWebRouter.get('/', (req, res) => {
-    res.redirect('/main')
+    res.redirect('/main.html')
 })
 
 authWebRouter.get('/login', (req, res) => {
     if(req.session.passport?.user){
-        res.redirect('/main')
+        res.redirect('/main.html')
     }else{
-    res.redirect('/login')
+    res.redirect('/login.html')
     }
 })
 
@@ -63,7 +63,7 @@ authWebRouter.post(
   )
 
 authWebRouter.get('/register', (req, res)=>{
-    res.redirect('/register')
+    res.redirect('/register.html')
 })
 
 authWebRouter.post('/register', async(req, res)=>{
@@ -71,9 +71,9 @@ authWebRouter.post('/register', async(req, res)=>{
   const response = await sessionService.registrarUsuario(registerData)
   if (response) {
     console.log("Registrado correctamente");
-    res.redirect('/login')
+    res.redirect('/login.html')
   } else {
-    res.redirect('/register-error')
+    res.redirect('/register-error.html')
   }
 })
 
@@ -82,7 +82,7 @@ authWebRouter.get('/logout', (req, res) => {
     if (nombre) {
         req.session.destroy(err => {
             if (!err) {
-                res.redirect('/logout')
+                res.redirect('/logout.html')
             } else {
                 res.redirect('/')
             }
@@ -93,11 +93,11 @@ authWebRouter.get('/logout', (req, res) => {
 })
 
 authWebRouter.get('/register-error', (req, res) =>{
-    res.redirect('/register-error')
+    res.redirect('/register-error.html')
 })
 
 authWebRouter.get('/login-error', (req, res) =>{
-    res.redirect('/login-error')
+    res.redirect('/login-error.html')
 })
 
 export default authWebRouter

@@ -9,7 +9,10 @@ import {Server as IOServer} from 'socket.io';
 
 import bcrypt from '../src/bcrypt/bcrypt.js';
 //import path from 'path'; //Para poder usar los archivos de las vistas, accede a las rutas absolutas
+
+import processRouter from './process/process.js';
 import dotenv from 'dotenv';
+import {config} from './config.js'
 dotenv.config();
 
 import productosApi from './router/api/productosApi.js';
@@ -65,6 +68,9 @@ app.use(productosApi)
 //Rutas del servidor web
 app.use(authWebRouter)
 app.use(productosWebRouter)
+
+//Ruta de process
+app.use(processRouter)
 
 //Servidor
 const PORT = process.env.PORT

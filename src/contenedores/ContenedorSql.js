@@ -1,31 +1,31 @@
 // CLASE QUE CONTIENE CRUD SQL
-import configClient from "../configClient.js";
+import config from '../config.js';
 
 class ContenedorSql {
 //C
 async save(producto) {
-        const ids = await configClient('productos').insert(producto);
+        const ids = await config('productos').insert(producto);
         return ids  
 }
 
 //R
 async getAll() {
-    return configClient('productos').select('*').limit(15)
+    return config('productos').select('*').limit(15)
 }
 
 async getById(id) {
-    return configClient('productos').where("id", id).select('*')
+    return config('productos').where("id", id).select('*')
 }
 
 //U
 async updateById(id, producto) {
-    const idUp = await configClient('productos').where("id", id).update(producto)
+    const idUp = await config('productos').where("id", id).update(producto)
     return idUp;
 }
 
 //D
 async deleteById(id) {
-    return configClient('productos').where("id", id).del();
+    return config('productos').where("id", id).del();
 }
 }
 
