@@ -10,16 +10,16 @@ import {Server as IOServer} from 'socket.io';
 import bcrypt from '../src/bcrypt/bcrypt.js';
 //import path from 'path'; //Para poder usar los archivos de las vistas, accede a las rutas absolutas
 
-import processRouter from './process/process.js';
+import processRouter from '../src/router/api/processApi.js';
 import dotenv from 'dotenv';
 import {config} from './config.js'
 dotenv.config();
 
 import productosApi from './router/api/productosApi.js';
+import processApi from './router/api/processApi.js'
 
 import authWebRouter from './router/web/auth.js';
 import productosWebRouter from './router/web/home.js';
-
 import mensajes from './router/web-socket/mensajes.js';
 import productos from './router/web-socket/productos.js'
 
@@ -64,17 +64,14 @@ app.use('/api/sessions', sessions)
 
 // Rutas del servidor API REST
 app.use(productosApi)
+app.use(processApi)
 
 //Rutas del servidor web
 app.use(authWebRouter)
 app.use(productosWebRouter)
 
-//Ruta de process
-app.use(processRouter)
-
 //Servidor
-const PORT = process.env.PORT
-const server = httpServer.listen(PORT, () => {
+const server = httpServer.listen(config.PORT, () => {
     console.log(`Server running on PORT: ${PORT}`)
 })
 

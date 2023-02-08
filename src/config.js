@@ -1,5 +1,9 @@
 import dotenv from 'dotenv';
+import minimist from 'minimist';
 dotenv.config()
+
+//Configuro el parametro de minimist para el puerto del servidor
+const argv = minimist(process.argv.slice(2), { alias:{p: 'port' }, default:{ PORT: 8080}})
 
 export const config = {
     db: {
@@ -18,11 +22,8 @@ export const config = {
             port: '8889'
         }, 
     server: {
-            NODE_ENV: process.env.NODE_ENV || 'DEV',
-            HOST: process.env.NODE_HOST || '127.0.0.1',
-            PORT: process.env.NODE_PORT || 3000
-        }
-        
+        PORT: argv.PORT
+    }
 }
 }    
 
