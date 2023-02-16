@@ -3,7 +3,7 @@ import path from 'path'
 
 function calcular(cant) {
     return new Promise((resolve, reject) => {
-        const forked = fork(path.resolve(process.cwd(), 'script/process.js'))
+        const forked = fork(path.resolve(process.cwd(), 'script/process-calcularRandoms.js'))
 
         forked.on('message', mensaje => {
             if (mensaje == 'Listo') {

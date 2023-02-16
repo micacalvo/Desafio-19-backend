@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
+import config from '../config.js'
 
-const URL = 'mongodb://127.0.0.1:27017/dbmica';
 
-mongoose.connect(URL, {
+mongoose.connect(config.cnxStr, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
 });

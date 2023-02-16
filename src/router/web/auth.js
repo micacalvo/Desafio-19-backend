@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import Session from '../../contenedores/ContenedorSession.js';
 import bcrypt from '../../bcrypt/bcrypt.js';
-import path from 'path'
 import passport from 'passport'
 import { Strategy } from "passport-local";
 const LocalStrategy = Strategy;
