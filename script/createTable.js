@@ -1,8 +1,11 @@
-import clientConnection from "../src/configClient.js";
+import knex from 'knex'
+import config  from '../src/config.js';
 
 //Función autoejecutable. Creación de tablas
+
 (async() => {
     try {
+        const clientConnection= knex(config.mariaDb)
         await clientConnection.schema.dropTableIfExists('productos');
         await clientConnection.schema.dropTableIfExists('mensajes');
 

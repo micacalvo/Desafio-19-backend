@@ -1,0 +1,12 @@
+Comandos
+1) Hago la peticion por medio de curl 
+curl -X GET "http://localhost:8081/info.html"
+
+2) Ejecuto Artillery
+artillery quick --count 20 -n 50 "http://localhost:8081/info.html" > result.txt
+
+3) Ejecutamos app en modo PROFILE (para crear los archivos isolate)
+node --prof index.js
+
+4) Paso los isolates a un archivo mas legible 
+node --prof-process isolate-00000171D94AB930-13772-v8.log > prof-result.txt
