@@ -8,7 +8,8 @@ const argv = minimist(process.argv.slice(2),
     {alias:
         {p: 'port',
         m: 'mode',
-        a: 'auth'}, default:
+        a: 'auth'}, 
+    default:
         {port: 8081,
         mode: 'FORK',
         auth: 'NO_AUTH',
@@ -22,10 +23,11 @@ const sessionConfig = {
     saveUninitialized: false,
     rolling: true,
     cookie: {
-        maxAge: 20000 //20sg
+        maxAge:1000 * 60 * 60
     }
 };    
 
+//Esta función la debo usar en la ruta info
 function getSpecs() {
     return {
         env: {description: 'entorno de ejecucion', value: argv.NODE_ENV },

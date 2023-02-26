@@ -7,7 +7,6 @@ import {Server as IOServer} from 'socket.io';
 
 import config from './config.js'
 
-
 import productosApi from './router/api/productosApi.js';
 import processApi from './router/api/processApi.js'
 
@@ -15,6 +14,12 @@ import authWebRouter from './router/web/auth.js';
 import productosWebRouter from './router/web/home.js';
 import mensajes from './router/web-socket/mensajes.js';
 import productos from './router/web-socket/productos.js'
+
+//Compression
+import compression from 'compression'
+
+//Loggers
+import { logInfo, logError, logWarning } from './loggers/loggers.js'
 
 function server(){
 //Instancio servidor
@@ -50,6 +55,22 @@ app.use(processApi)
 //Rutas del servidor web
 app.use(authWebRouter)
 app.use(productosWebRouter)
+
+//Configuración de compression
+app.use(compression())
+
+//Configuración de loggers
+//Logging general(Es el de info)
+app.use((req, res, next) => {
+    logInfo(`${req.method} ${req.url}`)
+    next()
+})
+
+//Logging de warning cuando la ruta no existe (* -> ruta random)
+app.use('*', (req, res, next) => {
+    logWarning(`${req.method} ${req.originalUrl} - Ruta inexistente`)
+    next()
+})
 
 return {
     listen: port => new Promise((resolve, reject) => {
