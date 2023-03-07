@@ -46,7 +46,7 @@ function getSpecs() {
 export default {
     getSpecs,
     NODE_ENV: argv.NODE_ENV,
-    PORT: argv.port,
+    port: argv.port,
     mode: argv.mode,
     auth: argv.auth,
     session: sessionConfig,
@@ -73,5 +73,5 @@ export default {
         PORT: argv.PORT
     } */
 }
-  
+
 

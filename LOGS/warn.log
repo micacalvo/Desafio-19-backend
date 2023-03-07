@@ -14,3 +14,5 @@
 [2023-03-07T17:44:02.754] [WARN] warn - GET /index.js - Ruta inexistente
 [2023-03-07T17:45:43.594] [WARN] warn - GET /css/estilos.css - Ruta inexistente
 [2023-03-07T17:45:43.669] [WARN] warn - GET /index.js - Ruta inexistente
+[2023-03-07T17:50:18.619] [WARN] warn - GET /css/estilos.css - Ruta inexistente
+[2023-03-07T17:50:18.642] [WARN] warn - GET /index.js - Ruta inexistente

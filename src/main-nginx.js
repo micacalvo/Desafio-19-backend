@@ -28,7 +28,7 @@ if (config.mode == 'CLUSTER' && cluster.isPrimary) {
 
     const app = server()
     try {
-        const connectedServer = await app.listen(config.PORT)
+        const connectedServer = await app.listen(config.port)
         console.log(`proceso #${process.pid} escuchando en el puerto ${connectedServer.address().port}`)
     } catch (error) {
         console.log(`Error en servidor ${error}`)
