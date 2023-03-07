@@ -69,9 +69,9 @@ export default {
         client: 'mysql',
         connection: process.env.MYSQL
     }, 
-    server: {
+    /* server: {
         PORT: argv.PORT
-    }
+    } */
 }
   
 

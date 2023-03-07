@@ -1,4 +1,4 @@
-import cluster from 'cluster'
+import cluster from 'cluster';
 import { cpus } from 'os'
 
 import { server } from './index.js'
