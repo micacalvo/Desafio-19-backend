@@ -1,0 +1,208 @@
+[2023-03-14T11:59:26.616] [ERROR] error - Error: users validation failed: edad: Path `edad` is required., direccion: Path `direccion` is required., nombre: Path `nombre` is required., email: Path `email` is required., photo: Path `photo` is required., password: Path `password` is required., phone: Path `phone` is required.
+    at ValidationError.inspect (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\layouts.js:65:52)
+    at app (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\appenders\file.js:98:23)
+    at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>)
+    at sendLogEventToAppender (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\log4js.js:42:21) {
+  errors: {
+    edad: ValidatorError: Path `edad` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'edad',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    direccion: ValidatorError: Path `direccion` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'direccion',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    nombre: ValidatorError: Path `nombre` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'nombre',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    email: ValidatorError: Path `email` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'email',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    photo: ValidatorError: Path `photo` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'photo',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    password: ValidatorError: Path `password` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'password',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    phone: ValidatorError: Path `phone` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'phone',
+      value: '+1undefined',
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'users validation failed'
+}
+[2023-03-14T12:01:55.404] [ERROR] error - Error: users validation failed: edad: Path `edad` is required., direccion: Path `direccion` is required., nombre: Path `nombre` is required., email: Path `email` is required., photo: Path `photo` is required., password: Path `password` is required., phone: Path `phone` is required.
+    at ValidationError.inspect (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\error\validation.js:50:26)
+    at formatValue (node:internal/util/inspect:806:19)
+    at inspect (node:internal/util/inspect:365:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2273:40)
+    at Object.format (node:internal/util/inspect:2130:10)
+    at basicLayout (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\layouts.js:65:52)
+    at app (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\appenders\file.js:98:23)
+    at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\log4js.js:43:5
+    at Array.forEach (<anonymous>)
+    at sendLogEventToAppender (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\log4js\lib\log4js.js:42:21) {
+  errors: {
+    edad: ValidatorError: Path `edad` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'edad',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    direccion: ValidatorError: Path `direccion` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'direccion',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    nombre: ValidatorError: Path `nombre` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'nombre',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    email: ValidatorError: Path `email` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'email',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    photo: ValidatorError: Path `photo` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'photo',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    password: ValidatorError: Path `password` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'password',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    phone: ValidatorError: Path `phone` is required.
+        at validate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaType.doValidate (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\schematype.js:1330:7)
+        at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\mongoose\lib\document.js:2905:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'phone',
+      value: '+1undefined',
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'users validation failed'
+}
+[2023-03-14T12:01:59.008] [ERROR] error - Error al enviar
+[2023-03-14T12:01:59.038] [ERROR] error - RestException [Error]: Permission to send an SMS has not been enabled for the region indicated by the 'To' number: +15134720065.
+    at success (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\twilio\lib\base\Version.js:79:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendSMSToUser (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/auth/twilio.js:18:25) {
+  status: 400,
+  code: 21408,
+  moreInfo: 'https://www.twilio.com/docs/errors/21408',
+  details: undefined
+}

@@ -1,3 +1,4 @@
+//Comunicación con websocket
 // Establecemos la comunicacion del lado del cliente 
 const socket = io.connect()
 
