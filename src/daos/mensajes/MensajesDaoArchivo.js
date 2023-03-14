@@ -1,4 +1,4 @@
-import ContenedorArchivo from "../../contenedores/ContenedorArchivo.js";
+/* import ContenedorArchivo from "../../contenedores/ContenedorArchivo.js";
 
 class MensajesDaoArchivo extends ContenedorArchivo {
     constructor(){
@@ -9,4 +9,4 @@ class MensajesDaoArchivo extends ContenedorArchivo {
     }
 }
 
-export default MensajesDaoArchivo;
+export default MensajesDaoArchivo; */

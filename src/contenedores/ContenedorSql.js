@@ -1,4 +1,4 @@
-// CLASE QUE CONTIENE CRUD SQL
+/* // CLASE QUE CONTIENE CRUD SQL
 import config from '../config.js';
 
 class ContenedorSql {
@@ -30,3 +30,4 @@ async deleteById(id) {
 }
 
 export default ContenedorSql;
+ */

@@ -1,4 +1,4 @@
-//Traigo la dependecia y la llave
+/* //Traigo la dependecia y la llave
 import admin from 'firebase-admin';
 const serviceAcount = '../../db/backendmica-firebase-adminsdk-f6in6-9dedd9eb50.json';
 
@@ -85,4 +85,4 @@ class ContenedorFirebase {
     }
 }
 
-export default ContenedorFirebase;
+export default ContenedorFirebase; */

@@ -40,10 +40,11 @@ app.use(express.json()) //Porque trabajo con formularios
 app.use(express.urlencoded({extended: true})) //Para postman
 app.use(express.static('public'))
 
+app.set('public', './public')
+app.set('view engine', 'html')
+
 app.use(session(config.session))
-/* app.use(cookieParser())
-app.use(bcrypt.createOnMongoStore())
- */
+
 // Middleware Passport
 app.use(passport.initialize())
 app.use(passport.session())

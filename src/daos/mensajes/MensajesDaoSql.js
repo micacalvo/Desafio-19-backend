@@ -1,4 +1,4 @@
-import ContenedorSql from '../../contenedores/ContenedorSql.js';
+/* import ContenedorSql from '../../contenedores/ContenedorSql.js';
 
 class MensajesDaoSql extends ContenedorSql {
     constructor(){
@@ -6,4 +6,4 @@ class MensajesDaoSql extends ContenedorSql {
     }
 }
 
-export default MensajesDaoSql;
+export default MensajesDaoSql; */

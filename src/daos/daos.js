@@ -1,8 +1,10 @@
 let productosDao
 let mensajesDao
+let usuariosDao
+let carritosDao
 
 switch ('mongodb') {
-    case 'json':
+    /* case 'json':
         const { default: ProductosDaoArchivo } = await import('./productos/ProductosDaoArchivo.js')
         const { default: mensajesDaoArchivo } = await import('./mensajes/mensajesDaoArchivo.js')
 
@@ -16,23 +18,27 @@ switch ('mongodb') {
         productosDao = new ProductosDaoFirebase()
         mensajesDao = new mensajesDaoFirebase()
 
-        break
+        break */
     case 'mongodb':
         const { default: ProductosDaoMongodb } = await import('./productos/ProductosDaoMongodb.js')
-        const { default: mensajesDaoMongodb } = await import('./mensajes/mensajesDaoMongodb.js')
+        const { default: MensajesDaoMongodb } = await import('./mensajes/mensajesDaoMongodb.js')
+        const { default: CarritosDaoMongodb } = await import('./carritos/CarritosDaoMongodb.js')
+        const { default: UsuariosDaoMongodb } = await import('./usuarios/UsuariosDaosMongodb.js')
 
         productosDao = new ProductosDaoMongodb()
-        mensajesDao = new mensajesDaoMongodb()
+        mensajesDao = new MensajesDaoMongodb()
+        carritosDao = new CarritosDaoMongodb()
+        usuariosDao = new UsuariosDaoMongodb()
 
         break
-    case 'mariadb':
+    /* case 'mariadb':
         const { default: ProductosDaoSql } = await import('./productos/ProductosDaoSql.js')
         const { default: mensajesDaoSql } = await import('./mensajes/mensajesDaoSql.js')
 
         productosDao = new ProductosDaoSql()
         mensajesDao = new mensajesDaoSql()
         break
-    /* case 'sqlite3':
+     *//* case 'sqlite3':
         const { default: ProductosDaoSql } = await import('./productos/ProductosDaoSql.js')
         const { default: mensajesDaoSql } = await import('./mensajes/mensajesDaoSql.js')
 
@@ -42,4 +48,4 @@ switch ('mongodb') {
         break */
 }
 
-export { productosDao, mensajesDao }
+export { productosDao, mensajesDao, carritosDao, usuariosDao }

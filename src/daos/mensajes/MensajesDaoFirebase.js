@@ -1,4 +1,4 @@
-import ContenedorFirebase from "../../contenedores/ContenedorFirebase.js";
+/* import ContenedorFirebase from "../../contenedores/ContenedorFirebase.js";
 
 class MensajesDaoFirebase extends ContenedorFirebase{
     constructor(){
@@ -9,4 +9,4 @@ class MensajesDaoFirebase extends ContenedorFirebase{
     }
 }
 
-export default MensajesDaoFirebase
+export default MensajesDaoFirebase */

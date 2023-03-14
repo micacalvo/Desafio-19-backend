@@ -1,3 +1,4 @@
+//Contenedor para guardar los usuarios
 import mongoose from 'mongoose';
 import usuariosSchema from '../../esquemas/usuariosSchema.js';
 import bcrypt from '../bcrypt/bcrypt.js';

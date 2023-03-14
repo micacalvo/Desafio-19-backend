@@ -3,6 +3,20 @@ import Session from '../../contenedores/ContenedorSession.js';
 import bcrypt from '../../bcrypt/bcrypt.js';
 import passport from 'passport'
 import { Strategy } from "passport-local";
+
+//Import main
+import { getHomeController } from '../../controllers/main.js'
+
+//Import register
+import { getRegisterController , postRegisterController } from '../../controllers/register.js';
+import { upload } from '../../multer/multer.js';
+
+//Import logins
+import { getLoginController, postLoginController } from '../../controllers/login.js'
+
+//Import Logouts
+import { getLogoutController } from '../../controllers/logout.js'
+
 const LocalStrategy = Strategy;
 const authWebRouter = new Router()
 const sessionService = new Session()
@@ -34,26 +48,18 @@ passport.use(
     done(null, user)
   })
 
-
 //Rutas
 
-authWebRouter.get('/', (req, res) => {
-    res.redirect('/main.html')
-})
+authWebRouter.get('/', getHomeController)
 
-authWebRouter.get('/login', (req, res) => {
-    if(req.session.passport?.user){
-        res.redirect('/main.html')
-    }else{
-    res.redirect('/login.html')
-    }
-})
+//Rutas de login
+authWebRouter.get('/login', getLoginController)
 
 authWebRouter.post(
     '/login',
     passport.authenticate('login', {
-      successRedirect: '/main',
-      failureRedirect: '/login-error',
+      successRedirect: '/main.html',
+      failureRedirect: '/login-error.html',
       passReqToCallback: true,
     }),
     (req, res) => {
@@ -61,35 +67,13 @@ authWebRouter.post(
     }
   )
 
-authWebRouter.get('/register', (req, res)=>{
-    res.redirect('/register.html')
-})
+//Rutas de registro  
+authWebRouter.get('/register', getRegisterController)
 
-authWebRouter.post('/register', async(req, res)=>{
-  const registerData = { email: req.body.registerEmail, password: req.body.registerPassword }
-  const response = await sessionService.registrarUsuario(registerData)
-  if (response) {
-    console.log("Registrado correctamente");
-    res.redirect('/login.html')
-  } else {
-    res.redirect('/register-error.html')
-  }
-})
+authWebRouter.post('/register', upload.single('photo') , postRegisterController)
 
-authWebRouter.get('/logout', (req, res) => {
-    const nombre = req.session.passport?.user
-    if (nombre) {
-        req.session.destroy(err => {
-            if (!err) {
-                res.redirect('/logout.html')
-            } else {
-                res.redirect('/')
-            }
-        })
-    } else {
-        res.redirect('/')
-    }
-})
+//Rutas de logout
+authWebRouter.get('/logout', getLogoutController)
 
 authWebRouter.get('/register-error', (req, res) =>{
     res.redirect('/register-error.html')

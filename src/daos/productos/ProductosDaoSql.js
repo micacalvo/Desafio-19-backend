@@ -1,4 +1,4 @@
-import ContenedorSql from '../../contenedores/ContenedorSql.js';
+/* import ContenedorSql from '../../contenedores/ContenedorSql.js';
 
 class ProductosDaoSql extends ContenedorSql {
     constructor(){
@@ -6,4 +6,4 @@ class ProductosDaoSql extends ContenedorSql {
     }
 }
 
-export default ProductosDaoSql;
+export default ProductosDaoSql; */

@@ -1,77 +1,84 @@
+//Contenedor para guardar los productos
 import mongoose from "mongoose";
-import config from '../config.js'
+import transformMongoObject from '../auth/objectUtil.js'
+import {urlMongo} from '../config.js'
+import {logInfo, logError} from '../loggers/loggers.js'
 
-
-mongoose.connect(config.cnxStr, {
+await mongoose.connect(urlMongo, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-});
-mongoose.set('strictQuery', false);
-console.log('Base de datos conectada');
+})
+.then(() => logInfo('Base de datos mongo conectada'))
+.catch(error => logError("Base de datos mongo no conectada"))
 
 class ContenedorMongodb {
-    constructor(nombreColeccion, esquema) {
-        this.coleccion = mongoose.model(nombreColeccion, esquema)
+    constructor(nombreCollection, esquema) {
+        this.collection = mongoose.model(nombreCollection, esquema)
     }
         
-    async save(producto) {
-       try {
-        const prod = new this.coleccion(producto)
-        const prodSave = await prod.save();
-        return prodSave
-       } catch (error) {
-        console.log('No se pueden agregar los productos')
-       } 
+    async save(elemento) {
+        try {
+            const res = await this.collection.create(elemento)
+            return transformMongoObject(res)
+        } catch (error) {
+            logError(error)
+            return false
+        } 
     }
 
     async getAll() {
         try {
-            const data = await this.coleccion.find({})
-            return data
+            const res = await this.collection.find({})
+            if (res.length == 0) {
+                return res
+            } else {
+                return transformMongoObject(res)
+            }
         } catch (error) {
-            console.log('No se pueden mostrar los productos')
+            logError(error)
+            return false
         }
     }
 
     async getById(id) {
-       try {
-        const data = await this.coleccion.find({'_id': id})
-        if(data){
-            return data
-        } else {
-            return ('No se encontro el producto')
+        try {
+            const res = await this.collection.find({ _id: id })
+            return transformMongoObject(res)
+        } catch (error) {
+            logError(error)
+            return false
         }
-    } catch(error) {
-        console.log(error)
-    }
 }
 
-    async updateById(id, item) {
+    async updateById(id, elemento) {
         try {
-            const updateProd = await this.coleccion.updateOne({_id: id}, {$set: item})
-            return (updateProd)
-        } catch(error) {
-            console.log('No se puede actualizar el producto')
+            const res = await this.collection.updateOne({ _id: id }, { $set: elemento })
+            return res.acknowledged
+        } catch (error) {
+            logError(error)
+            return false
         }
     }
 
     async deleteById(id) {
         try {
-            const deletedProd = await this.coleccion.deleteOne({_id:id})
-            return deletedProd   
+            const res = await this.collection.deleteOne({ _id: id })
+            return res.acknowledged
         } catch (error) {
-            console.log('No se puede eliminar el producto')
+            logError(error)
+            return false
         }
     }
 
     async deleteAll() {
-    try {
-        const data = await this.coleccion.deleteMany({})
-            return data    
-    } catch (error) {
-        console.log('No se pueden eliminar los productos')
+        try {
+            const res = await this.collection.deleteMany()
+            return res.acknowledged
+        } catch (error) {
+            logError(error)
+            return false
+        }
     }
-}
 }
 
 export default ContenedorMongodb

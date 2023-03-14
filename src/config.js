@@ -43,35 +43,25 @@ function getSpecs() {
     }
 }
 
+//Envio de mensajes y emails
+export const userMailAdmin = process.env.USER_MAILADMIN
+export const passMailAdmin = process.env.PASS_MAILADMIN
+export const twilioSID = process.env.TWILIO_ACCOUNT_SID
+export const twilioToken = process.env.TWILIO_AUTH_TOKEN
+export const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER
+export const twilioWhatsAppPhoneNumber = process.env.TWILIO_WHATSAPP_PHONE_NUMBER
+export const adminWhatsAppPhoneNumber = process.env.ADMIN_WHATSAPP_PHONE_NUMBER
+export const adminPhoneNumber = process.env.ADMIN_PHONE_NUMBER
+
+export const urlMongo = process.env.URL_MONGO
+
 export default {
     getSpecs,
     NODE_ENV: argv.NODE_ENV,
     port: argv.port,
     mode: argv.mode,
     auth: argv.auth,
-    session: sessionConfig,
-    mongoLocal: {
-        client: 'mongodb',
-        cnxStr: process.env.MONGODB_LOCAL
-    },
-    mongoRemote: {
-        client: 'mongodb',
-        cnxStr: process.env.MONGODB_REMOTO
-    },
-    sqlite3: {
-        client: 'sqlite3',
-        connection: {
-            filename: process.env.SQLITE3
-        },
-        useNullAsDefault: true
-    },
-    mariaDb: {
-        client: 'mysql',
-        connection: process.env.MYSQL
-    }, 
-    /* server: {
-        PORT: argv.PORT
-    } */
+    session: sessionConfig
 }
 
 

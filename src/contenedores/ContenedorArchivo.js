@@ -1,4 +1,4 @@
-//Contenedor de archivo para productos
+//Contenedor de archivo para carritos
 import fs from 'fs';
 
 //CRUD
@@ -86,7 +86,7 @@ class ContenedorArchivo{
         }
     }
 
-/* // Método update
+// Método update
     async update (updateProd, index){
         try {
             const leer = await fs.readFile(this.path, "utf-8")
@@ -98,7 +98,7 @@ class ContenedorArchivo{
             const errorMsg = 'No se pudo actualizar el producto'
             return errorMsg
         }
-    } */
+    }
 }; 
 
 export default ContenedorArchivo

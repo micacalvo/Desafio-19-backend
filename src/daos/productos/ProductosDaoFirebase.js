@@ -1,4 +1,4 @@
-import ContenedorFirebase from "../../contenedores/ContenedorFirebase";
+/* import ContenedorFirebase from "../../contenedores/ContenedorFirebase";
 
 class ProductosDaoFirebase extends ContenedorFirebase{
     constructor() {
@@ -6,4 +6,4 @@ class ProductosDaoFirebase extends ContenedorFirebase{
     }
 }
 
-export default ProductosDaoFirebase;
+export default ProductosDaoFirebase; */
