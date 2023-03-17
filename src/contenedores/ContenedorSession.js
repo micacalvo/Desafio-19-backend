@@ -1,34 +1,18 @@
-//Contenedor para guardar los usuarios
-import mongoose from 'mongoose';
-import usuariosSchema from '../../esquemas/usuariosSchema.js';
-import bcrypt from '../bcrypt/bcrypt.js';
+import MongoStore from 'connect-mongo'
+import {urlMongo, secretSessionMongo} from '../config.js'
 
-class Session {
-    constructor() {
-    this.url = 'mongodb+srv://micaela:micaela@cluster0.m1b6gix.mongodb.net/micadb'
-    this.mongodb = mongoose.connect
-    }
-
-    //Funciones
-    async conectarDB() {
-    await this.mongodb(this.url)
-    }
-
-    async buscarUsuarioEmail(email) {
-    await this.conectarDB()
-    const usuario = await usuariosSchema.findOne({email})
-    return usuario
-    }
-
-    async registrarUsuario(usuario) {
-    await this.conectarDB()
-    const userExist = await usuariosSchema.findOne({email: usuario.email})
-    if (userExist) return false
-    usuario.password = bcrypt.createHash(usuario.password)
-    const newUser = new usuariosSchema(usuario)
-    await newUser.save()
-    return true
+const mongoSession = {
+    store: MongoStore.create(
+        {
+            mongoUrl: urlMongo,
+            mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true }
+        }),
+    secret: secretSessionMongo,
+    resave: false,
+    saveUninitialized: false,
+    rolling: true,
+    cookie: {
+        maxAge: 60000
     }
 }
-
-export default Session
+export default mongoSession

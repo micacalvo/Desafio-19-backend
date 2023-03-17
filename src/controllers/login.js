@@ -11,11 +11,10 @@ export const postLoginController = async (req, res, next) => {
             req.session.message = 'Password incorrecto'
         }
     }
-
     req.session.route = 'login'
     next();
 }
 
 export const getLoginController = (req, res) => {
-    res.render('public/login')
+    res.redirect('login.html')
 }

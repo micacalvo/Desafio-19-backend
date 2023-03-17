@@ -7,7 +7,10 @@ export const postRegisterController = async (req, res) => {
     const email = req.body.email
     const password = req.body.password
     if (usuarios.find(usuario => usuario.email == email)) {
-        req.session.message = "Este email ya se encuentra registrado, prueba con otro"
+        req.session.message = "Este email ya se encuentra registrado"
+        req.session.route = 'register'
+        //req.session.fileName = req.body.fileName
+        res.redirect('/register-error')
         
     } else {
         const newUser = {
@@ -16,7 +19,7 @@ export const postRegisterController = async (req, res) => {
             age: req.body.edad,
             email: email,
             password: password,
-            photo: req.body.fileName,
+            //photo: req.body.fileName,
             phone: '+1' + req.body.telefono
         }
         await usuariosDao.save(newUser).then(res => {

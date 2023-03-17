@@ -23,7 +23,7 @@ switch ('mongodb') {
         const { default: ProductosDaoMongodb } = await import('./productos/ProductosDaoMongodb.js')
         const { default: MensajesDaoMongodb } = await import('./mensajes/mensajesDaoMongodb.js')
         const { default: CarritosDaoMongodb } = await import('./carritos/CarritosDaoMongodb.js')
-        const { default: UsuariosDaoMongodb } = await import('./usuarios/UsuariosDaosMongodb.js')
+        const { default: UsuariosDaoMongodb } = await import('./usuarios/UsuariosDaoMongodb.js')
 
         productosDao = new ProductosDaoMongodb()
         mensajesDao = new MensajesDaoMongodb()

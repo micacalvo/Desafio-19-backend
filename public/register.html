@@ -16,42 +16,51 @@
             <h1>Registrarse</h1>
             <br>
             <form action="/register" method="post" autocomplete="off">
-                <div class="form-group">
-                    <label for="registerEmail">Ingrese su email</label>
-                <input id="registerEmail" class="form-control" type="email" name="registerEmail" required>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ingrese email</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
                 </div>
-                <div class="form-group">
-                    <label for="registerPassword">Ingrese su contraseña</label>
-                <input id="registerPassword" class="form-control" type="password" name="registerPassword" required>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Ingrese contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
                 </div>
-                <div class="form-group">
-                    <label for="registerName">Ingrese su nombre</label>
-                <input id="registerName" class="form-control" type="text" name="registerName" required>
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Ingrese nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" required>
                 </div>
-                <div class="form-group">
-                    <label for="registerAge">Ingrese su edad</label>
-                <input id="registerAge" class="form-control" type="number" name="registerAge" required>
+                
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Ingrese edad</label>
+                    <input type="number" class="form-control" name="edad" id="edad" required>
                 </div>
-                <div class="form-group">
-                    <label for="registerCountry">Ingrese su país</label>
-                <input id="registerCountry" class="form-control" type="text" name="registerCountry" required>
+
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Ingrese direccion</label>
+                    <input type="text" class="form-control" name="direccion" id="direccion" required>
                 </div>
-                <div class="form-group">
-                    <label for="registerPhone">Ingrese su teléfono</label>
-                <input id="registerPhone" class="form-control" type="number" name="registerPhone" required>
+
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Ingrese telefono</label>
+                    <input type="tel" class="form-control" name="telefono" id="telefono" required>
                 </div>
-                <div class="form-group">
-                    <label for="photo">Seleccione foto de perfil</label>
+            
+                <!-- <div class="mb-3">
+                    <label for="photo" class="form-label">Seleccione foto de perfil</label>
                     <input type="file" class="form-control" name="photo" id="photo" required>
                 </div>
-                <button class="btn btn-success mt-3">Enviar datos</button>
-            </form>
-            <div class='text-left'>
+ -->
+            <button class="btn btn-success mt-3">Enviar datos</button>
+        </form>
+            
+        <div class='text-left'>
                 <button class='btn btn-success my-3' onclick="location.href='/login'">Ir
                   a Login</button>
-              </div>
         </div>
     </div>
+</div>
+
 </body>
 
 </html>

@@ -4,7 +4,7 @@ import { logInfo, logError } from '../loggers/loggers.js';
 
 const transporter = createTransport({
     service: 'gmail',
-    port: 587,
+    port: 995,
     auth: {
         user: userMailAdmin,
         pass: passMailAdmin
@@ -22,14 +22,14 @@ export const sendMailNewUser = async (newUser) => {
         <div>
             <ul>
                 <li>NOMBRE: <span style="color: green;"> ${newUser.name}</span></li>
+                <li>EMAIL <span style="color: green;">${newUser.email}</span></li>
                 <li>DIRECCION <span style="color: green;">${newUser.address}</span></li>
                 <li>EDAD <span style="color: green;">${newUser.age}</span></li>
                 <li>TELEFONO <span style="color: green;">${newUser.phone}</span></li>
-                <li>EMAIL <span style="color: green;">${newUser.email}</span></li>
-                <li>imagen <img src="uploads/${newUser.photo}" width="16" height="16"/></li>
-            </ul>
-        </div>`}
-
+                </ul>
+                </div>`}
+                
+                //<li>imagen <img src="uploads/${newUser.photo}" width="16" height="16"/></li>
     try {
         const info = await transporter.sendMail(mailOptions)
         logInfo('Mail enviado', info)
@@ -60,6 +60,5 @@ export const sendMailNewCart = async (nombre, email, cart) => {
         logError(error)
     }
 }
-
 
 

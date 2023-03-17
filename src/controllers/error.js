@@ -1,11 +1,10 @@
-import fs from 'fs'
+import path from 'path'
 
 export const getErrorController = (req, res ) => {
     if(req.session.route == 'register') {
-        fs.unlinkSync('public/uploads/' + req.session.fileName)
+        path.join('../public/uploads/' + req.session.fileName)
     }
-
-    res.render('public/register-error' , {
+    res.redirect('/register-error.html' , {
         message: req.session.message,
         route: req.session.route
     })

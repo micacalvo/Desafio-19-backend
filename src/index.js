@@ -1,19 +1,25 @@
 import express from 'express';
 import session from 'express-session';
+import mongoSession from './contenedores/ContenedorSession.js';
 import passport from 'passport';
 
 import {Server as HTTPServer} from 'http';
 import {Server as IOServer} from 'socket.io';
 
-import config from './config.js'
-
 import productosApi from './router/api/productosApi.js';
 import processApi from './router/api/processApi.js'
 
-import authWebRouter from './router/web/auth.js';
-import productosWebRouter from './router/web/home.js';
+import productosWebRouter from './router/web/main.js';
 import mensajes from './router/web-socket/mensajes.js';
 import productos from './router/web-socket/productos.js'
+
+//Rutas web
+import {login} from './router/web/login.js'
+import {register} from './router/web/register.js'
+import {error} from './router/web/error.js'
+import {main} from './router/web/main.js'
+import {cart} from './router/web/cart.js'
+import {logout} from './router/web/logout.js'
 
 //Compression
 import compression from 'compression'
@@ -40,10 +46,11 @@ app.use(express.json()) //Porque trabajo con formularios
 app.use(express.urlencoded({extended: true})) //Para postman
 app.use(express.static('public'))
 
-app.set('public', './public')
+/* app.set('public', './public')
 app.set('view engine', 'html')
-
-app.use(session(config.session))
+ */
+//Middleware session
+app.use(session(mongoSession))
 
 // Middleware Passport
 app.use(passport.initialize())
@@ -54,8 +61,16 @@ app.use(productosApi)
 app.use(processApi)
 
 //Rutas del servidor web
-app.use(authWebRouter)
 app.use(productosWebRouter)
+app.use('/login', login)
+app.use('/logout', logout)
+app.use('/register', register)
+app.use('/error', error)
+app.use('/main', main)
+app.use('/cart', cart)
+app.get('*', (req, res) => {
+    res.redirect('/login')
+})
 
 //Configuración de compression
 app.use(compression())

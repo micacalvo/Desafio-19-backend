@@ -1,14 +1,15 @@
 import twilio from 'twilio'
-import {twilioSID, twilioToken, twilioWhatsAppPhoneNumber, adminWhatsAppPhoneNumber, adminPhoneNumber, twilioPhoneNumber} from '../config.js'
+//import {twilioSID, twilioToken, twilioMessagingServiceSid, twilioWhatsAppPhoneNumber, adminWhatsAppPhoneNumber, adminPhoneNumber, twilioPhoneNumber} from '../config.js'
 import { logInfo, logError } from '../loggers/loggers.js'
 
-const client = twilio(twilioSID, twilioToken)
+const accountSid = 'AC84db5c1947ddf0eda65fbccdf9e61b28';
+const authToken = 'dd6af55a2965731ac3d02740e6842f42';
 
-//Mensaje de texto
+const client = twilio(accountSid, authToken);
+    
 export const sendSMSNewUser = async (newUser) => {
-
     const msg = `NUEVO USUARIO REGISTRADO
-    NAME: ${newUser.name}
+    NOMBRE: ${newUser.name}
     DIRECCION: ${newUser.address}
     EDAD: ${newUser.age}
     TELEFONO: ${newUser.phone}
@@ -17,21 +18,19 @@ export const sendSMSNewUser = async (newUser) => {
     try {
         const message = await client.messages.create({
             body: msg,
-            from: twilioPhoneNumber,
-            to: adminPhoneNumber // Uso numero de Admin porque tiene que ser numero validado por twilio
+            from: '+15076688868',
+            to: '+5493512905798'               
         })
-        logInfo(`SMS cart send`, message)
-
+        logInfo(message)
     } catch (error) {
         logError(error)
     }
 }
 
-//Mensaje de Wsp
 export const sendWhatsAppNewUser = async (newUser) => {
 
     const msg = `NUEVO USUARIO REGISTRADO
-    NAME: ${newUser.name}
+    NOMBRE: ${newUser.name}
     DIRECCION: ${newUser.address}
     EDAD: ${newUser.age}
     TELEFONO: ${newUser.phone}
@@ -40,47 +39,48 @@ export const sendWhatsAppNewUser = async (newUser) => {
     try {
         const message = await client.messages.create({
             body: msg,
-            from: twilioWhatsAppPhoneNumber,
-            to: `Whatsapp:${adminWhatsAppPhoneNumber}`
+            from: 'whatsapp:+14155238886',
+            to: 'whatsapp:+5493512905798'
         })
-        logInfo('WhatsApp new user send', message)
-        } catch (error) {
-        logError('Error al enviar', error)
+        logInfo(message)
+    } catch (error) {
+        logError(error)
     }
 }
 
-export const sendMessageNewCart = async (name, email, cart) => {  // Funcion que envia whatsApp y SMS con nuevo carrito comprado
+export const sendMessageNewCart = async (name, email, cart) => {  
 
-    let listaProductosCarrito = `NUEVO CARRITO de ${name} (email: ${email}) \n`
+    let listaProductosCarrito = `NUEVO CARRITO de ${name} (email: ${email} ) \n`
     cart.productos.forEach(element => {
         listaProductosCarrito += `${element.title}   $${element.price} x ${element.cantidad} \n`
     });
 
     const msg = listaProductosCarrito + 'Total: $' + cart.total
 
-
-    //Envio de Wsp
+//Envio de Wsp
     try {
         const message = await client.messages.create({
             body: msg,
-            from: twilioWhatsAppPhoneNumber,
-            to: `Whatsapp:${adminWhatsAppPhoneNumber}`
+            from: 'whatsapp:+14155238886',
+            to: 'whatsapp:+5493512905798'
         })
-        logInfo('WhatsApp new cart send', message)
+        logInfo(message)
     } catch (error) {
-        logError('Error al enviar WSP new cart', error)
+        logError(error)
     }
-    //Envio de SMS
+//Envio de SMS
     try {
         const message = await client.messages.create({
             body: msg,
-            from: twilioPhoneNumber,
-            to: adminPhoneNumber
+            from: 'whatsapp:+14155238886',
+            to: '+5493512905798'
         })
-
-        logInfo('SMS new cart send', message)
-
+        logInfo(message)
     } catch (error) {
-        logError('Error al enviar SMS new cart', error)
+        logError(error)
     }
 }
+
+
+
+    

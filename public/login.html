@@ -16,19 +16,22 @@
             <h1>Login de Usuario</h1>
             <br>
             <form action="login" method="post" autocomplete="off">
-                <div class="form-group">
-                    <label for="emailUser">Ingrese su email</label>
-                <input id="emailUser" class="form-control" type="email" name="emailUser" required>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ingrese email</label>
+                    <input type="email" class="form-control" name="username" id="email" required>
                 </div>
-                <div class="form-group">
-                    <label for="passwordUser">Ingrese su contraseña</label>
-                <input id="passwordUser" class="form-control" type="password" name="passwordUser" required>
+    
+                <div class="mb-3">
+                    <label for="password" class="form-label">Ingrese contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
                 </div>
+    
                 <button class="btn btn-success mt-3">Enviar</button>
             </form>
+            
             <div class="text-left">
                 <button class="btn btn-success my-3" onclick="location.href='/register'">Crear una cuenta</button>
-                </div>
+            </div>
         </div>
     </div>
 </body>

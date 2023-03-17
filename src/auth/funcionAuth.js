@@ -1,4 +1,4 @@
-//Función de autenticación
+/* //Función de autenticación
 export function authApi(req, res, next) {
     if (req.session?.nombre) {
         next()
@@ -13,4 +13,4 @@ export function authWeb(req, res, next) {
     } else {
         res.redirect('/login')
     }
-}
+} */

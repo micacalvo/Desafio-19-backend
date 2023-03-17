@@ -1,86 +1,33 @@
-import { Router } from 'express'
-import Session from '../../contenedores/ContenedorSession.js';
-import bcrypt from '../../bcrypt/bcrypt.js';
 import passport from 'passport'
-import { Strategy } from "passport-local";
+import  { Strategy as LocalStrategy } from 'passport-local'
+import { usuariosDao } from '../../daos/daos.js'
+import { isValidPassword } from '../../bcrypt/bcrypt.js'
 
-//Import main
-import { getHomeController } from '../../controllers/main.js'
+passport.use('login' , new LocalStrategy(async(username, password , done) => {
 
-//Import register
-import { getRegisterController , postRegisterController } from '../../controllers/register.js';
-import { upload } from '../../multer/multer.js';
+    const usuarios = await usuariosDao.getAll()
+    if( usuarios === false ) done(Error('Error') )
+    const user = usuarios.find(usuario => usuario.email === username)
+    if( !user) {
+        done(null, false)
+    }else{
+        if(isValidPassword(password , user.password)){
+            done(null, user)
+        } else {
+            done(null, false)
+        }
+    }}) )
 
-//Import logins
-import { getLoginController, postLoginController } from '../../controllers/login.js'
-
-//Import Logouts
-import { getLogoutController } from '../../controllers/logout.js'
-
-const LocalStrategy = Strategy;
-const authWebRouter = new Router()
-const sessionService = new Session()
-
-passport.use(
-    'login',
-    new LocalStrategy(
-      {
-        usernameField: 'emailUser',
-        passwordField: 'passwordUser',
-        passReqToCallback: true,
-      },
-      async (req, emailUser, passwordUser, done) => {
-        const usuario = await sessionService.buscarUsuarioEmail(emailUser)
-        if (!usuario) return done(null, false)
-        if (!bcrypt.isValidPassword(usuario, passwordUser)) return done(null, false)
-        return done(null, usuario)
-      }
-    )
-  )
-// Serialize
-  passport.serializeUser((user, done) => {
-    done(null, user.email)
-  })
-  
-// Deserialize
-  passport.deserializeUser(async (email, done) => {
-    const user = await sessionService.buscarUsuarioEmail(email)
-    done(null, user)
-  })
-
-//Rutas
-
-authWebRouter.get('/', getHomeController)
-
-//Rutas de login
-authWebRouter.get('/login', getLoginController)
-
-authWebRouter.post(
-    '/login',
-    passport.authenticate('login', {
-      successRedirect: '/main.html',
-      failureRedirect: '/login-error.html',
-      passReqToCallback: true,
-    }),
-    (req, res) => {
-      res.cookie('userEmail', req.session.passport.user)
-    }
-  )
-
-//Rutas de registro  
-authWebRouter.get('/register', getRegisterController)
-
-authWebRouter.post('/register', upload.single('photo') , postRegisterController)
-
-//Rutas de logout
-authWebRouter.get('/logout', getLogoutController)
-
-authWebRouter.get('/register-error', (req, res) =>{
-    res.redirect('/register-error.html')
+passport.serializeUser((user, done ) => {
+    done(null, user.id)
 })
 
-authWebRouter.get('/login-error', (req, res) =>{
-    res.redirect('/login-error.html')
+passport.deserializeUser(async (id, done) => {
+    done(null, await usuariosDao.getById(id))
 })
 
-export default authWebRouter
+export const authenticate = passport.authenticate('login',{
+    successRedirect: '/main',
+    failureRedirect: '/login-error'
+  })
+

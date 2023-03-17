@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import minimist from 'minimist';
 
 dotenv.config()
@@ -17,15 +17,7 @@ const argv = minimist(process.argv.slice(2),
     })
 
 //Configuración de session
-const sessionConfig = {
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: false,
-    rolling: true,
-    cookie: {
-        maxAge:1000 * 60 * 60
-    }
-};    
+export const secretSessionMongo = process.env.SECRET_SESSION_MONGO    
 
 //Esta función la debo usar en la ruta info
 function getSpecs() {
@@ -46,8 +38,9 @@ function getSpecs() {
 //Envio de mensajes y emails
 export const userMailAdmin = process.env.USER_MAILADMIN
 export const passMailAdmin = process.env.PASS_MAILADMIN
-export const twilioSID = process.env.TWILIO_ACCOUNT_SID
-export const twilioToken = process.env.TWILIO_AUTH_TOKEN
+export const twilioMessagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID
+export const accountSid = process.env.TWILIO_ACCOUNT_SID
+export const authToken = process.env.TWILIO_AUTH_TOKEN
 export const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER
 export const twilioWhatsAppPhoneNumber = process.env.TWILIO_WHATSAPP_PHONE_NUMBER
 export const adminWhatsAppPhoneNumber = process.env.ADMIN_WHATSAPP_PHONE_NUMBER
@@ -61,7 +54,6 @@ export default {
     port: argv.port,
     mode: argv.mode,
     auth: argv.auth,
-    session: sessionConfig
 }
 
 
