@@ -3,7 +3,7 @@ import { userMailAdmin, passMailAdmin } from '../config.js';
 import { logInfo, logError } from '../loggers/loggers.js';
 
 const transporter = createTransport({
-    service: 'gmail',
+    service: 'hotmail',
     port: 995,
     auth: {
         user: userMailAdmin,

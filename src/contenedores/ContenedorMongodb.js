@@ -1,6 +1,6 @@
 //Contenedor para guardar los productos
 import mongoose from "mongoose";
-import transformMongoObject from '../auth/objectUtil.js'
+//import transformMongoObject from '../auth/objectUtil.js'
 import {urlMongo} from '../config.js'
 import {logInfo, logError} from '../loggers/loggers.js'
 
@@ -16,67 +16,63 @@ class ContenedorMongodb {
         this.collection = mongoose.model(nombreCollection, esquema)
     }
         
-    async save(elemento) {
+    async save(producto) {
         try {
-            const res = await this.collection.create(elemento)
-            return transformMongoObject(res)
+         const prod = new this.collection(producto)
+         const prodSave = await prod.save();
+         return prodSave
         } catch (error) {
-            logError(error)
-            return false
+         logError("Error")
         } 
-    }
-
+     }
+ 
     async getAll() {
         try {
-            const res = await this.collection.find({})
-            if (res.length == 0) {
-                return res
-            } else {
-                return transformMongoObject(res)
-            }
-        } catch (error) {
+            const data = await this.collection.find({})
+            return data
+        }
+        catch (error) {
             logError(error)
-            return false
         }
     }
 
     async getById(id) {
         try {
-            const res = await this.collection.find({ _id: id })
-            return transformMongoObject(res)
-        } catch (error) {
+            const data = await this.collection.find({'_id': id})
+            if(data){
+                return data
+            } else {
+                return ('No se encontro')
+           }} 
+           catch (error) {
             logError(error)
-            return false
         }
 }
 
-    async updateById(id, elemento) {
+    async updateById(id, item) {
         try {
-            const res = await this.collection.updateOne({ _id: id }, { $set: elemento })
-            return res.acknowledged
+            const updateProd = await this.collection.updateOne({_id: id}, {$set: item})
+            return (updateProd)
         } catch (error) {
             logError(error)
-            return false
         }
     }
 
     async deleteById(id) {
         try {
-            const res = await this.collection.deleteOne({ _id: id })
-            return res.acknowledged
+            const deletedProd = await this.collection.deleteOne({_id:id})
+            return deletedProd   
         } catch (error) {
             logError(error)
-            return false
         }
     }
 
     async deleteAll() {
         try {
-            const res = await this.collection.deleteMany()
-            return res.acknowledged
+            const data = await this.collection.deleteMany({})
+            return data    
         } catch (error) {
             logError(error)
-            return false
         }
     }
 }

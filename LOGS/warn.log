@@ -161,3 +161,6 @@
 [2023-03-17T10:36:42.736] [WARN] warn - POST /register.html - Ruta inexistente
 [2023-03-17T10:41:53.981] [WARN] warn - POST /register.html - Ruta inexistente
 [2023-03-17T10:42:08.574] [WARN] warn - POST /login.html - Ruta inexistente
+[2023-03-20T09:57:40.692] [WARN] warn - POST /register.html - Ruta inexistente
+[2023-03-20T10:47:11.943] [WARN] warn - POST /api/productos - Ruta inexistente
+[2023-03-20T10:48:11.837] [WARN] warn - POST /api/carritos - Ruta inexistente

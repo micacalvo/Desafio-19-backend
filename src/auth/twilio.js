@@ -3,7 +3,7 @@ import twilio from 'twilio'
 import { logInfo, logError } from '../loggers/loggers.js'
 
 const accountSid = 'AC84db5c1947ddf0eda65fbccdf9e61b28';
-const authToken = 'dd6af55a2965731ac3d02740e6842f42';
+const authToken = 'de9263a422cae9d065ab550022ac9e3d';
 
 const client = twilio(accountSid, authToken);
     

@@ -11,8 +11,7 @@ export const postLoginController = async (req, res, next) => {
             req.session.message = 'Password incorrecto'
         }
     }
-    req.session.route = 'login'
-    next();
+    res.redirect('/main.html')
 }
 
 export const getLoginController = (req, res) => {

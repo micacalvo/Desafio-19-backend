@@ -20,7 +20,7 @@ export const postRegisterController = async (req, res) => {
             email: email,
             password: password,
             //photo: req.body.fileName,
-            phone: '+1' + req.body.telefono
+            phone: req.body.telefono
         }
         await usuariosDao.save(newUser).then(res => {
             sendMailNewUser(newUser)

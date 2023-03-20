@@ -1,4 +1,4 @@
-const transformMongoModel = (object) => {
+/* const transformMongoModel = (object) => {
 
     let newObject = {...object._doc}
     newObject.id = newObject._id.toString()
@@ -17,4 +17,4 @@ const transformMongoObject = (model) => {
     return result
 }
 
-export default transformMongoObject
+export default transformMongoObject */

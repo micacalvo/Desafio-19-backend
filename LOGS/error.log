@@ -2487,3 +2487,81 @@
   responseCode: 535,
   command: 'AUTH PLAIN'
 }
+[2023-03-20T10:02:12.795] [ERROR] error - RestException [Error]: The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.
+    at success (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\twilio\lib\base\Version.js:79:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendSMSNewUser (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/auth/twilio.js:19:25) {
+  status: 400,
+  code: 21608,
+  moreInfo: 'https://www.twilio.com/docs/errors/21608',
+  details: undefined
+}
+[2023-03-20T10:02:13.799] [ERROR] error - Error: Invalid login: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials r145-20020acaa897000000b00383e305597dsm3712278oie.23 - gsmtp
+    at SMTPConnection._formatError (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\nodemailer\lib\smtp-connection\index.js:790:19)
+    at SMTPConnection._actionAUTHComplete (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\nodemailer\lib\smtp-connection\index.js:1548:34)
+    at SMTPConnection.<anonymous> (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\nodemailer\lib\smtp-connection\index.js:546:26)
+    at SMTPConnection._processResponse (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\nodemailer\lib\smtp-connection\index.js:953:20)
+    at SMTPConnection._onData (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\nodemailer\lib\smtp-connection\index.js:755:14)
+    at SMTPConnection._onSocketData (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\nodemailer\lib\smtp-connection\index.js:193:44)
+    at TLSSocket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. Learn more at\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials r145-20020acaa897000000b00383e305597dsm3712278oie.23 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[2023-03-20T10:07:18.524] [ERROR] error - RestException [Error]: The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.
+    at success (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\twilio\lib\base\Version.js:79:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendSMSNewUser (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/auth/twilio.js:19:25) {
+  status: 400,
+  code: 21608,
+  moreInfo: 'https://www.twilio.com/docs/errors/21608',
+  details: undefined
+}
+[2023-03-20T10:33:47.862] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'find')
+    at UsuariosDaoMongodb.getAll (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/contenedores/ContenedorMongodb.js:31:47)
+    at postLoginController (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/controllers/login.js:4:40)
+    at Layer.handle [as handle_request] (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\layer.js:95:5)
+    at next (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\layer.js:95:5)
+    at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:346:12)
+    at next (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:175:3)
+[2023-03-20T10:36:18.594] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'find')
+    at UsuariosDaoMongodb.getAll (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/contenedores/ContenedorMongodb.js:31:47)
+    at postRegisterController (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/controllers/register.js:6:40)
+    at Layer.handle [as handle_request] (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\layer.js:95:5)
+    at next (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\layer.js:95:5)
+    at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:346:12)
+    at next (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:175:3)
+[2023-03-20T10:38:04.138] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'find')
+    at UsuariosDaoMongodb.getAll (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/contenedores/ContenedorMongodb.js:31:47)
+    at postRegisterController (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/controllers/register.js:6:40)
+    at Layer.handle [as handle_request] (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\layer.js:95:5)
+    at next (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\layer.js:95:5)
+    at G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:346:12)
+    at next (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\express\lib\router\index.js:175:3)
+[2023-03-20T10:40:34.863] [ERROR] error - RestException [Error]: The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.
+    at success (G:\Mica\Documentos importantes\Programacion\Back2\3 preentrega\node_modules\twilio\lib\base\Version.js:79:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendSMSNewUser (file:///G:/Mica/Documentos%20importantes/Programacion/Back2/3%20preentrega/src/auth/twilio.js:19:25) {
+  status: 400,
+  code: 21608,
+  moreInfo: 'https://www.twilio.com/docs/errors/21608',
+  details: undefined
+}
