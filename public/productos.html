@@ -58,8 +58,41 @@
     </div>
 </div>
 
-<script src="js/productos.js"></script>
+<script type="module" src="js/productos.js">
 
+function getProdTest(){
+        fetch('/productos')
+        .then(async (response) => {
+            const data = await response.json()
+            renderProds(data)
+        })
+}
+
+function renderProds(prods) {
+  const html = prods
+    .map((prod) => {
+      return `<tr>
+                    <td>${prod.title}</td>
+                    <td>${prod.price}</td>
+                    <td><img
+                        width="50"
+                        src=${prod.thumbnail}
+                        alt="not found"
+                      /></td>
+                  </tr>`
+    })
+    .join(' ')
+    document.getElementById('productos').innerHTML = html
+}
+    
+getProdTest()
+            .then(productos => {
+                return renderProds(productos)
+            })
+            .then(html => {
+                document.getElementById('productos').innerHTML = html
+            })  
+</script>
 </body>
 
 </html>

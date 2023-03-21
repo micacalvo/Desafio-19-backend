@@ -3,7 +3,7 @@ import {createProductos} from '../../faker/productos.js'
 
 const productosApiRouter = new Router()
 
-productosApiRouter.get('/api/productos-test', (req, res) => {
+productosApiRouter.get('/productos', (req, res) => {
     res.json(createProductos(5))
 })
 

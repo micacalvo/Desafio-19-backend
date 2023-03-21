@@ -2,7 +2,6 @@ import { carritosDao, usuariosDao } from "../daos/daos.js"
 import { sendMailNewCart } from "../auth/nodemailer.js"
 import { sendMessageNewCart } from "../auth/twilio.js"
 
-
 let carritos = []  //Para los carritos que esten generando los usuarios
 
 export const getCartController = async (req, res) => {

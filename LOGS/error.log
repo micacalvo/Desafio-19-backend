@@ -2565,3 +2565,14 @@
   moreInfo: 'https://www.twilio.com/docs/errors/21608',
   details: undefined
 }
+[2023-03-21T17:10:34.819] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:11:20.514] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:12:12.204] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:12:57.174] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:21:41.435] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:22:46.330] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:25:12.762] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:57:09.209] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T17:59:27.348] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T18:00:22.937] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".
+[2023-03-21T18:01:30.753] [ERROR] error - Unexpected input given to normalize. Expected type to be "object", found "string".

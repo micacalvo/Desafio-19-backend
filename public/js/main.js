@@ -24,7 +24,7 @@ socket.on('productos', productos => {
 
 async function makeHtmlTable(productos) {
       const html = {productos};
-      return thml
+      return html
 }
 
 //Desnormalización de mensajes
