@@ -1,8 +1,8 @@
-import { Router } from 'express'
-import { getCartController, postCartAddProductController, deleteCartProductController, postCartBuyController} from '../../controllers/cart.js'
-export const cart = Router()
+import { Router } from "express";
+import { getCartController } from "../../controllers/cart.Controllers.js";
 
-cart.get('/' , getCartController)
-cart.post('/addProduct' , postCartAddProductController)
-cart.delete('/deleteProduct/:id' , deleteCartProductController)
-cart.post('/buy' , postCartBuyController)
+const cartWebRouter = new Router();
+
+cartWebRouter.get("/cart", getCartController);
+
+export default cartWebRouter;

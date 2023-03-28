@@ -1,4 +1,4 @@
-import ContenedorArchivo from '../../contenedores/ContenedorArchivo.js';
+/* import ContenedorArchivo from '../../contenedores/ContenedorArchivo.js';
 const ArchivoProductos = new ContenedorArchivo("productos")
 import { logError } from '../../loggers/loggers.js'
 
@@ -14,3 +14,4 @@ export default async function configurarSocket(socket, sockets) {
         sockets.emit('productos', await ArchivoProductos.getAll());
         })
 }
+ */

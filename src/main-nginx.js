@@ -2,7 +2,7 @@ import cluster from 'cluster';
 import { cpus } from 'os'
 
 import { server } from './index.js'
-import config from './config.js'
+import config from '../src/config/config.js'
 
 
 if (config.mode == 'CLUSTER' && cluster.isPrimary) {

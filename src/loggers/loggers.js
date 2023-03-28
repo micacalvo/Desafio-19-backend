@@ -1,4 +1,4 @@
-import log4js  from "log4js";
+/* import log4js  from "log4js";
 
 log4js.configure({
     appenders: {
@@ -30,4 +30,4 @@ export function logWarning(msj) {
 
 export function logError(msj) {
     loggerError.error(msj)
-}
+} */

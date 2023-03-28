@@ -1,0 +1,42 @@
+<%- include('../templates/head', {tituloWeb:'Register'}) %>
+
+<body>
+    <div class="container mt-3">
+        <div class="jumbotron">
+            <h1>Registrar Usuario</h1>
+            <br />
+            <form enctype="multipart/form-data" class="form" action="/register" method="post" role="form" autocomplete="off">
+                <div>
+                    <label for="nombre">Ingrese su nombre</label>
+                    <input id="nombre" class="form-control" type="text" name="nombre" required placeholder="Nombre" />
+                    <br />
+                    <label for="direccion">Ingrese su dirección</label>
+                    <input id="direccion" class="form-control" type="text" name="direccion" required
+                        placeholder="Av 4969" />
+                    <br />
+                    <label for="edad">Ingrese su edad</label>
+                    <input id="edad" class="form-control" type="number" name="edad" required />
+                    <br />
+                    <label for="telefono">Ingrese su número de teléfono</label>
+                    <input id="telefono" class="form-control" type="number" name="telefono" required />
+                    <br />
+                    <label for="foto">Ingrese su foto de perfil</label>
+                    <input id="foto" class="form-control" type="file" name="foto" required />
+                    <br />
+                    <label for="email">Ingrese su email</label>
+                    <input id="email" class="form-control" type="email" name="email" required
+                        placeholder="email@example.com" />
+                    <br />
+                    <label for="password">Ingrese su contraseña</label>
+                    <input id="password" class="form-control" type="password" name="password" required />
+                </div>
+                <input class="btn btn-success my-3" type="submit" value="Registrar" />
+            </form>
+            <hr />
+            <button class="btn btn-success my-3" onclick="location.href = '/login'">
+                Ir a Login
+            </button>
+        </div>
+    </div>
+</body>
+</html>

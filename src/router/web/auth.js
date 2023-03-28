@@ -1,33 +1,29 @@
-import passport from 'passport'
-import  { Strategy as LocalStrategy } from 'passport-local'
-import { usuariosDao } from '../../daos/daos.js'
-import { isValidPassword } from '../../bcrypt/bcrypt.js'
+import { Router } from "express";
 
-passport.use('login' , new LocalStrategy(async(username, password , done) => {
+import { uploader } from "../../utils/multer/multer.js";
+import { authenticate } from "../../utils/passport/passport.js";
+import { getLogin, getLoginError, getLogout, getSignin, postSignin } from "../../controllers/auth.Controllers.js";
 
-    const usuarios = await usuariosDao.getAll()
-    if( usuarios === false ) done(Error('Error') )
-    const user = usuarios.find(usuario => usuario.email === username)
-    if( !user) {
-        done(null, false)
-    }else{
-        if(isValidPassword(password , user.password)){
-            done(null, user)
-        } else {
-            done(null, false)
-        }
-    }}) )
+const authWebRouter = new Router();
 
-passport.serializeUser((user, done ) => {
-    done(null, user.id)
-})
+// Rutas login
+authWebRouter.get("/", (req, res) => {
+  res.redirect("login");
+});
 
-passport.deserializeUser(async (id, done) => {
-    done(null, await usuariosDao.getById(id))
-})
+authWebRouter.get("/login", getLogin);
 
-export const authenticate = passport.authenticate('login',{
-    successRedirect: '/main',
-    failureRedirect: '/login-error'
-  })
+authWebRouter.post("/login", authenticate);
 
+// Rutas Logout
+authWebRouter.get("/logout", getLogout);
+
+//Login-error
+authWebRouter.get("/login-error", getLoginError);
+
+//Signin
+authWebRouter.get("/register", getSignin);
+
+authWebRouter.post("/register", uploader.single("foto"), postSignin);
+
+export default authWebRouter;
