@@ -1,10 +1,24 @@
-import ContenedorMongodb from "../../contenedores/ContenedorMongodb.js"
-import productSchema from "../../schemas/productSchema.js"
+import { logError, logInfo } from '../../../loggers/loggers.js';
+import ContenedorMongodb from '../../contenedores/ContenedorMongodb.js';
+import ProductosSchema from '../../schemas/productosSchema.js';
 
-class ProductosDaoMongodb extends ContenedorMongodb {
-    constructor (){
-        super(productSchema)
+class ProductosDao extends ContenedorMongodb {
+  constructor() {
+    super(ProductosSchema);
+    this.contenedor = ContenedorMongodb.getInstance();
+    this.contenedor.conectarDB();
+  }
+
+  async buscarProductosPorPrecio(precio) {
+    try {
+      const productos = await ProductosSchema.find({ price: precio });
+      logInfo(productos);
+      return productos;
+    } catch (error) {
+      logError('Error al encontrar el producto por el precio', error);
+      throw error;
     }
+  }
 }
 
-export default ProductosDaoMongodb
+export default ProductosDao;

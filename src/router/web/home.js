@@ -1,8 +1,22 @@
-import { Router } from "express";
-import { getHomeController } from "../../controllers/home.Controllers.js";
+import { Router } from 'express'
 
-const homeWebRouter = new Router();
+const productosWebRouter = new Router()
 
-homeWebRouter.get("/home", getHomeController);
+productosWebRouter.get('/home', webAuth, (req, res) => {
+    res.sendFile('main.html', {root: 'public'})
+    // res.render(path.join(process.cwd(), '/views/pages/home.ejs'), { nombre: req.session.nombre })
+})
 
-export default homeWebRouter;
+productosWebRouter.get('/productos', (req, res) => {
+    res.sendFile('productos.html', { root: 'public' })
+})
+
+function webAuth(req, res, next) {
+    if (req.session.passport?.user) {
+        next()
+    } else {
+        res.redirect('/login')
+    }
+}
+
+export default productosWebRouter

@@ -13,29 +13,30 @@ class MongoDBClient extends DBClient {
 
     async connect() {
         try {
-            mongoose.set('strictQuery', false);
-            await this.client.connect(config.mongoRemote.cnxStr, config.mongoRemote.options);
-            this.connected = true;
-
-            logger.info("Base de datos conectada");
+          this.client.connect(
+            config.mongoRemote.cnxStr,
+            config.mongoRemote.options
+          );
+          this.connected = true;
+          logger.info('Base de datos conectada');
         } catch (error) {
-            const objErr = new CustomError(500, "Error al conectarse con MongoDB", error);
-            logger.error(objErr);
-            throw objErr;
+          const objErr = new CustomError(500, 'Error al conectarse a mongodb', error);
+          logger.error(objErr);
+          throw objErr;
         }
-    }
-
-    async disconnect() {
+      }
+    
+      async disconnect() {
         try {
-            await this.client.connection.close();
-            this.connected = false;
-            logger.info("Base de datos desconectada");
+          await this.client.connection.close();
+          this.connected = false;
+          logger.info('Base de datos desconectada');
         } catch (error) {
-            const objErr = new CustomError(500, "Error al desconectarse a mongodb", error);
-            logger.error(objErr);
-            throw objErr;
+          const objErr = new CustomError(500, 'Error al desconectarse a mongodb', error);
+          logger.error(objErr);
+          throw objErr;
         }
+      }
     }
-}
-
+    
 export default MongoDBClient;

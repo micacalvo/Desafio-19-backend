@@ -1,105 +1,84 @@
-/* //Contenedor de archivo para carritos
-import fs from 'fs';
+import { promises as fs } from 'fs'
 
-//CRUD
-class ContenedorArchivo{
-    constructor (path){
-        this.path = path
+class ContenedorArchivo {
+
+    constructor(ruta) {
+        this.ruta = ruta;
     }
 
-// Metodo Save(Object)--> Me permite crear objetos
-    async save(obj){
+    async getById(id) {
+        const elems = await this.getAll()
+        const buscado = elems.find(e => e.id == id)
+        return buscado
+    }
+
+    async getAll() {
         try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-            let id
-            if (obj.id) {
-                id = obj.id
-            } else {
-                if (data.length === 0) {
-                    id = 1
-                }else{
-                    id = data.length +1
-                }                
+            const elems = await fs.readFile(this.ruta, 'utf-8')
+            return JSON.parse(elems)
+        } catch (error) {
+            return []
+        }
+    }
+
+    async save(elem) {
+        const elems = await this.getAll()
+
+        let newId
+        if (elems.length == 0) {
+            newId = 1
+        } else {
+            newId = elems[elems.length - 1].id + 1
+        }
+
+        const newElem = { ...elem, id: newId }
+        elems.push(newElem)
+
+        try {
+            await fs.writeFile(this.ruta, JSON.stringify(elems, null, 2))
+            return newId
+        } catch (error) {
+            throw new Error(`Error al guardar: ${error}`)
+        }
+    }
+
+    async updateById(elem) {
+        const elems = await this.getAll()
+        const index = elems.findIndex(e => e.id == elem.id)
+        if (index == -1) {
+            throw new Error(`Error al actualizar: no se encontró el id ${elem.id}`)
+        } else {
+            elems[index] = elem
+            try {
+                await fs.writeFile(this.ruta, JSON.stringify(elems, null, 2))
+            } catch (error) {
+                throw new Error(`Error al borrar: ${error}`)
             }
-            const newObj = {...obj, id}
-            data.push(newObj)
-            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
-            return data
-        } catch (error) {
-            console.log(error)
         }
     }
 
-//Listar todos los productos    
-    async getAll(){
-        try {
-            const all = await fs.readFile(this.path, 'utf-8')
-            return JSON.parse(all)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-// Metodo encontar un producto por su id(Number)
-    async getById(id){
-        try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-            const obj = data.find(obj => id === obj.id)
-            if (!obj) {
-                const noId = "No se encontro ese producto"
-                return noId            
-            } else {
-               return obj
-            }              
-        } catch (error) {
-            console.log(error)
-        }
-    }   
-
-// Metodo borrar un producto por su ID(Number)
     async deleteById(id) {
-        try {
-            const leer = await fs.readFile(this.path,"utf-8")
-            const data = JSON.parse(leer)
+        const elems = await this.getAll()
+        const index = elems.findIndex(e => e.id == id)
+        if (index == -1) {
+            throw new Error(`Error al borrar: no se encontró el id ${id}`)
+        }
 
-            const obj = data.filter(obj => obj.id !== id)
-            if(!obj) {
-                return null
-            }
-            data.push(obj)
-            await fs.writeFile(this.path, JSON.stringify(obj, null, 2), "utf-8")
-            return obj
-        } catch(error) {
-            console.log(error)
+        elems.splice(index, 1)
+        try {
+            await fs.writeFile(this.ruta, JSON.stringify(elems, null, 2))
+        } catch (error) {
+            throw new Error(`Error al borrar: ${error}`)
         }
     }
 
-//Metodo para eliminar todos los productos     
     async deleteAll() {
         try {
-            const all = await fs.writeFile(this.path, JSON.stringify([]), "utf-8")
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
-// Método update
-    async update (updateProd, index){
-        try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-
-            data[index] = updateProd
-            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
+            await fs.writeFile(this.ruta, JSON.stringify([], null, 2))
         } catch (error) {
-            const errorMsg = 'No se pudo actualizar el producto'
-            return errorMsg
+            throw new Error(`Error al borrar todo: ${error}`)
         }
     }
-}; 
+}
 
 export default ContenedorArchivo
-*/

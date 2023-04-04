@@ -1,4 +1,4 @@
-const socket = io();
+/* const socket = io();
 
 // Pedido de products
 socket.emit("getProducts");
@@ -48,4 +48,4 @@ function makeProductsTable(items) {
     })
     .join(" ");
   return html;
-}
+} */

@@ -1,4 +1,4 @@
-/* import ContenedorMemoria from '../../contenedores/ContenedorMemoria.js';
+import ContenedorMemoria from '../../contenedores/ContenedorMemoria.js';
 const ArchivoMensajes = new ContenedorMemoria("mensajes");
 import {normalizarMensajes} from '../../normalizacion/export.js';
 import {logError} from '../../loggers/loggers.js';
@@ -23,4 +23,3 @@ export default async function configurarSocket(socket, sockets) {
         sockets.emit('mensajes', await manejarEnvíoDeMensajes());
     })
 }
- */

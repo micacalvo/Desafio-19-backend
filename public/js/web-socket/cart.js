@@ -1,4 +1,4 @@
-const socket = io();
+/* const socket = io();
 
 // Pedido de productos
 socket.emit("getItemsCart", userEmail);
@@ -74,4 +74,4 @@ function makeTotalPrice(cartItems){
               <h3><strong>Total: </strong>$ ${parseFloat(cartTotal).toFixed(2)}</h3>
               <a id="btnPurchase" class="btn btn-success m-3">Comprar</a>
             </div>`;
-}
+} */

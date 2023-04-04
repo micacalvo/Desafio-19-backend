@@ -1,10 +1,9 @@
 export const getCartController = async (req, res) => {
     if (!req.session.passport?.user) {
-        res.redirect("login.ejs");
+        res.redirect("login.html");
     } else {
-        res.redirect("cart.ejs", { user: req.session.passport?.user });
+        res.redirect("cart.html", { user: req.session.passport?.user });
     }
 }
-
 
 

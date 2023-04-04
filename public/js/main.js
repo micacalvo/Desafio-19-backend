@@ -1,8 +1,5 @@
-//Comunicación con websocket
-// Establecemos la comunicacion del lado del cliente 
-const socket = io.connect()
+const socket = io.connect();
 
-// Selecciono el form completo y hacemos un preventDefault
 const formAgregarProducto = document.getElementById('formAgregarProducto')
 formAgregarProducto.addEventListener('submit', e => {
     e.preventDefault()
@@ -15,19 +12,34 @@ formAgregarProducto.addEventListener('submit', e => {
     formAgregarProducto.reset()
 })
 
-// Renderizamos los productos en el html
 socket.on('productos', productos => {
-    makeHtmlTable(productos).then(html => {
-        document.getElementById('productos').innerHTML = html
-    })
+    // EN CASO DE USAR HTML
+    renderProducts(productos)
+    // makeHtmlTable(productos).then(html => {
+    //     document.getElementById('productos').innerHTML = html
+    // })
 });
 
-async function makeHtmlTable(productos) {
-      const html = {productos};
-      return html
+const renderProducts = (data) => {
+    const html = data.map(products => {
+        return (`<tr class="d-flex justify-content-between align-items-center"><td><strong>${products.title}</strong></td> <td class="d-flex justify-content-center align-items-center""><em>$${products.price}</em></td> <td class="d-flex justify-content-center"><img src="${products.thumbnail}" height="70px" width="70"></td></tr>`)
+    }).join(' ')
+    document.getElementById('productos').innerHTML = html
 }
 
-//Desnormalización de mensajes
+function makeHtmlTable(productos) {
+    return fetch('plantillas/tabla-productos.hbs')
+        .then(respuesta => respuesta.text())
+        .then(plantilla => {
+            const template = Handlebars.compile(plantilla);
+            const html = template({ productos })
+            return html
+        })
+}
+
+// MENSAJES
+
+//DESNORMALIZACIÓN DE MENSAJES 
 // Definimos un esquema de autor
 const authorSchema = new normalizr.schema.Entity('authors',{}, {idAttribute:"mail"});
 
@@ -40,53 +52,50 @@ const mensajeSchema = new normalizr.schema.Entity('messages', {
     text: [textSchema]
 })
 
-// Chat websocket
 const inputUsername = document.getElementById('username')
 const inputMensaje = document.getElementById('inputMensaje')
 const btnEnviar = document.getElementById('btnEnviar')
 
-// Selecciono el form completo y procedemos a hacer un prevent default
 const formPublicarMensaje = document.getElementById('formPublicarMensaje')
 formPublicarMensaje.addEventListener('submit', e => {
     e.preventDefault()
-    
-    const mensaje = {
-      author: {
-          mail: inputUsername.value,
-          name: document.getElementById('firstname').value,
-          lastName: document.getElementById('lastname').value,
-          age: document.getElementById('age').value,
-          username: document.getElementById('alias').value,
-          avatar: document.getElementById('avatar').value
-      },
-      text: inputMensaje.value
-  }
 
-  socket.emit('nuevoMensaje', mensaje);
-  formPublicarMensaje.reset()
-  inputMensaje.focus()
+    const mensaje = {
+        author: {
+            mail: inputUsername.value,
+            name: document.getElementById('firstname').value,
+            lastName: document.getElementById('lastname').value,
+            age: document.getElementById('age').value,
+            username: document.getElementById('alias').value,
+            avatar: document.getElementById('avatar').value
+        },
+        text: inputMensaje.value
+    }
+
+    socket.emit('nuevoMensaje', mensaje);
+    formPublicarMensaje.reset()
+    inputMensaje.focus()
 })
 
 socket.on('mensajes', mensajesN => {
-  // Desnormalizamos los mensajes recibidos por el socket y los integramos al html
-  let mensajesDenormalized = normalizr.denormalize(mensajesN.result, [mensajeSchema], mensajesN.entities)
-  const html = makeHtmlList(mensajesDenormalized)
-  document.getElementById('mensajes').innerHTML = html;
-  
-  // Guardamos el tamaño de la data y hacemos el porcentaje
-  let mensajesNsize = JSON.stringify(mensajesN).length
-  console.log(mensajesN, mensajesNsize);
-  let mensajesDsize = JSON.stringify(mensajesDenormalized).length
-  console.log(mensajesDenormalized, mensajesDsize);
-  
-  // Logica del porcentaje
-  let porcentajeC = parseInt((mensajesNsize * 100) / mensajesDsize)
-  console.log(`Porcentaje de compresión ${porcentajeC}%`)
-  document.getElementById('compresion-info').innerText = porcentajeC
-  })
-  
-  // Funcion del html para integrar todos los datos de lo recibido por el socket
-  function makeHtmlList(mensajes) {
+// Dernomalizamos los mensajes recibidos por el socket y los integramos al html
+let mensajesDenormalized = normalizr.denormalize(mensajesN.result, [mensajeSchema], mensajesN.entities)
+const html = makeHtmlList(mensajesDenormalized)
+document.getElementById('mensajes').innerHTML = html;
+
+// Guardamos el tamaño de la data y hacemos el porcentaje
+let mensajesNsize = JSON.stringify(mensajesN).length
+console.log(mensajesN, mensajesNsize);
+let mensajesDsize = JSON.stringify(mensajesDenormalized).length
+console.log(mensajesDenormalized, mensajesDsize);
+
+// Logica del porcentaje
+let porcentajeC = parseInt((mensajesNsize * 100) / mensajesDsize)
+console.log(`Porcentaje de compresión ${porcentajeC}%`)
+document.getElementById('compresion-info').innerText = porcentajeC
+})
+
+function makeHtmlList(mensajes) {
     return mensajes.map(mensaje => {
         return (`
         <div>
@@ -100,13 +109,13 @@ socket.on('mensajes', mensajesN => {
 }
 
 inputUsername.addEventListener('input', () => {
-  const hayEmail = inputUsername.value.length
-  const hayTexto = inputMensaje.value.length
-  inputMensaje.disabled = !hayEmail
-  btnEnviar.disabled = !hayEmail || !hayTexto
+    const hayEmail = inputUsername.value.length
+    const hayTexto = inputMensaje.value.length
+    inputMensaje.disabled = !hayEmail
+    btnEnviar.disabled = !hayEmail || !hayTexto
 })
 
 inputMensaje.addEventListener('input', () => {
-  const hayTexto = inputMensaje.value.length
-  btnEnviar.disabled = !hayTexto
+    const hayTexto = inputMensaje.value.length
+    btnEnviar.disabled = !hayTexto
 })

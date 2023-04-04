@@ -1,92 +1,54 @@
-/* //Contenedor de memoria de los mensajes
-import fs from 'fs';
+class ContenedorMemoria {
 
-//CRUD
-class ContenedorMemoria{
-    constructor (path){
-        this.path = path
+    constructor() {
+        this.elementos = []
     }
 
-//Metodo para crear el mensaje     
-    async save(obj){
-        try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-            let timestamp= new Date().toLocaleString()
-            let id 
-            if(obj.id) {
-                id = obj.id
-            } else {
-                if(data.length === 0){
-                    id = 1 
-                } else {
-                    id = data.length + 1
-                }
-            }
-            const newMensaje = {...obj, id, timestamp}
-            data.push(newMensaje)
-            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
-            return obj.id 
-        } catch (error) {
-            const errorMsg = "No se pudo agregar el mensaje"
-            return (errorMsg)
+    getById(id) {
+        const elem = this.elementos.find(elem => elem.id == id)
+        return elem || { error: `elemento no encontrado` }
+    }
+
+    getAll() {
+        return [...this.elementos]
+    }
+
+    save(elem) {
+        let newId
+        if (this.elementos.length == 0) {
+            newId = 1
+        } else {
+            newId = this.elementos[this.elementos.length - 1].id + 1
+        }
+
+        const newElem = { ...elem, id: newId }
+        this.elementos.push(newElem)
+        return newElem
+    }
+
+    updateById(elem) {
+        const newElem = { ...elem, id: Number(elem.id) }
+        const index = this.elementos.findIndex(p => p.id == elem.id)
+        if (index == -1) {
+            return { error: `elemento no encontrado` }
+        } else {
+            this.elementos[index] = newElem
+            return newElem
         }
     }
 
-//Listar todos los mensajes
-    async getAll(){
-        try {
-            const all = await fs.readFile(this.path, 'utf-8')
-            return JSON.parse(all)
-        } catch (error) {
-            const errorMsg = 'No se encontraron resultados'
-            return errorMsg
+    deleteById(id) {
+        const index = this.elementos.findIndex(elem => elem.id == id)
+        if (index == -1) {
+            return { error: `elemento no encontrado` }
+        } else {
+            return this.elementos.splice(index, 1)
         }
     }
 
-//Buscar por id    
-    async getById(id){
-        try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-            const obj = data.find (obj => obj.id === id)
-            if (!obj) {
-                const noId = 'No se encontro ese mensaje'
-                return noId           
-            }else{
-               return obj
-            }              
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-//Eliminar todos los mensajes    
-    async deleteAll(){
-        try {
-            const all = await fs.writeFile(this.path, JSON.stringify([]), "utf-8")
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
-    async deleteById(id){
-        try {
-            const leer = await fs.readFile(this.path,"utf-8")
-            const data = JSON.parse(leer)
-
-            const obj = data.filter(obj => obj.id !== id)
-            if(!obj) {
-                return null
-            }
-            data.push(obj)
-            await fs.writeFile(this.path, JSON.stringify(obj, null, 2), "utf-8")
-            return obj
-        } catch(error) {
-            console.log(error)
-        }    
+    deleteAll() {
+        this.elementos = []
     }
 }
 
-export default ContenedorMemoria  */
+export default ContenedorMemoria

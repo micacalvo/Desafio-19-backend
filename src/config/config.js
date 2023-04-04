@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import minimist from 'minimist';
 
+//Inicializador de variables de entorno
 dotenv.config()
 
 //Configuro el parametro de minimist para el puerto del servidor
@@ -10,7 +11,7 @@ const argv = minimist(process.argv.slice(2),
         m: 'mode',
         a: 'auth'}, 
     default:
-        {port: 8081,
+        {port: process.env.PORT || 8081,
         mode: 'FORK',
         auth: 'NO_AUTH',
         NODE_ENV: 'PROD'}
@@ -55,8 +56,22 @@ export default {
     mode: argv.mode,
     auth: argv.auth,
     fileSystem: {
-        path: "./DB",
-      }
+        path: process.env.FILESYSTEM
+      },
+      mongoLocal: {
+        client: 'mongodb',
+        cnxStr: process.env.MONGODB_LOCAL
+    },
+    mongoRemote: {
+        client: 'mongodb',
+        cnxStr: process.env.MONGODB_REMOTO,
+        options: {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                // useCreateIndex: true,
+                // serverSelectionTimeoutMS: 5000,
+        }    
+    }
 }
 
 

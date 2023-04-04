@@ -1,32 +1,32 @@
 import { createHash } from "../utils/bcrypt/bcrypt.js";
 import { sendMailNewUser } from "../utils/nodemailer/nodemailer.js";
 
-import CarritosDaoMongodb from "../models/daos/carritos/CarritosDaoMongodb.js";
+ import CarritosDaoMongodb from "../models/daos/carritos/CarritosDaoMongodb.js";
 import UsuariosDaoMongodb from "../models/daos/usuarios/UsuariosDaoMongodb.js";
 
 const cartApi = new CarritosDaoMongodb();
 const usersApi = new UsuariosDaoMongodb();
 
 export const getLogin = async (req, res) => {
-    res.redirect("/login.ejs");
+    res.redirect("/login.html");
 }
 
 export const getLogout = async (req, res) => {
     if (!req.session.passport?.user) {
-        res.redirect("/login.ejs");
+        res.redirect("/login.html");
     } else {
-        res.redirect("/logout.ejs", {
+        res.redirect("/logout.html", {
             nombre: req.session.passport?.user.nombre,
         });
     }
 }
 
 export const getLoginError = async (req, res) => {
-    res.redirect("/login-error.ejs");
+    res.redirect("/login-error.html");
 }
 
 export const getSignin = async (req, res) => {
-    res.redirect("/register.ejs");
+    res.redirect("/register.html");
 }
 
 export const postSignin = async (req, res) => {
@@ -35,7 +35,7 @@ export const postSignin = async (req, res) => {
     const userExist = usersDb.find((usr) => usr.email == email);
 
     if (userExist) {
-        res.redirect("/register-error.ejs");
+        res.redirect("/register-error.html");
     } else {
         const newUser = {
             nombre,
