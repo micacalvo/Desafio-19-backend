@@ -1,6 +1,10 @@
 import axios from "axios"
 
+<<<<<<< HEAD
 const API_URL = 'http://localhost:8080'
+=======
+const API_URL = 'http://localhost:8081'
+>>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
 
 const obtenerProductos = async () => {
     return await axios.get(`${API_URL}/apiProductos`)

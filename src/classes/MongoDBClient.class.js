@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import mongoose from 'mongoose';
 import config from '../config/config.js';
 import CustomError from './CustomError.class.js';
@@ -48,3 +49,47 @@ class MongoDBClient extends DBClient {
 }
 
 export default MongoDBClient;
+=======
+import mongoose from "mongoose";
+import config from "../config/config.js";
+import logger from "../config/winston.js";
+import CustomError from "./CustomError.class.js";
+import DBClient from "./DBClient.class.js";
+
+class MongoDBClient extends DBClient {
+    constructor() {
+        super();
+        this.connected = false;
+        this.client = mongoose;
+    }
+
+    async connect() {
+        try {
+          this.client.connect(
+            config.mongoRemote.cnxStr,
+            config.mongoRemote.options
+          );
+          this.connected = true;
+          logger.info('Base de datos conectada');
+        } catch (error) {
+          const objErr = new CustomError(500, 'Error al conectarse a mongodb', error);
+          logger.error(objErr);
+          throw objErr;
+        }
+      }
+    
+      async disconnect() {
+        try {
+          await this.client.connection.close();
+          this.connected = false;
+          logger.info('Base de datos desconectada');
+        } catch (error) {
+          const objErr = new CustomError(500, 'Error al desconectarse a mongodb', error);
+          logger.error(objErr);
+          throw objErr;
+        }
+      }
+    }
+    
+export default MongoDBClient;
+>>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
