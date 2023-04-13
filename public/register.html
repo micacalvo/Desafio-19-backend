@@ -16,51 +16,22 @@
             <h1>Registrarse</h1>
             <br>
             <form action="/register" method="post" autocomplete="off">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Ingrese email</label>
-                    <input type="email" class="form-control" name="email" id="email" required>
+                <div class="form-group">
+                    <label for="registerEmail">Ingrese su email</label>
+                <input id="registerEmail" class="form-control" type="email" name="registerEmail" required>
                 </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Ingrese contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password" required>
+                <div class="form-group">
+                    <label for="registerPassword">Ingrese su contraseña</label>
+                <input id="registerPassword" class="form-control" type="password" name="registerPassword" required>
                 </div>
-
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Ingrese nombre</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="edad" class="form-label">Ingrese edad</label>
-                    <input type="number" class="form-control" name="edad" id="edad" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="direccion" class="form-label">Ingrese direccion</label>
-                    <input type="text" class="form-control" name="direccion" id="direccion" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="telefono" class="form-label">Ingrese telefono</label>
-                    <input type="tel" class="form-control" name="telefono" id="telefono" required>
-                </div>
-            
-                <!-- <div class="mb-3">
-                    <label for="photo" class="form-label">Seleccione foto de perfil</label>
-                    <input type="file" class="form-control" name="photo" id="photo" required>
-                </div>
- -->
-            <button class="btn btn-success mt-3">Enviar datos</button>
-        </form>
-            
-        <div class='text-left'>
-                <button class='btn btn-success my-3' onclick="location.href='/login'">Ir
+                <button class="btn btn-success mt-3">Enviar</button>
+            </form>
+            <div class='text-left'>
+                <button class='btn btn-success my-3' onclick="location.href = '/login'">Ir
                   a Login</button>
+              </div>
         </div>
     </div>
-</div>
-
 </body>
 
 </html>

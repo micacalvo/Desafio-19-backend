@@ -28,4 +28,4 @@ const run = (url) => {
 };
 
 console.log("Running all benchmarks in parallei...");
-run("http://localhost:8081/info.html");
+run("http://localhost:8081/info");

@@ -13,7 +13,7 @@
 <body>
     <div class="jumbotron">
         <h1 class="alert alert-primary">
-            Hasta luego, <span id="getUserEmail"></span>
+            Hasta luego, <%=nombre%>!
         </h1>
     </div>
     <script>
@@ -21,15 +21,6 @@
             location.href = '/'
         }, 2000)
     </script>
-    <script>
-    (function getSessionUserEmail() {
-        let obj = document.cookie.split('; ').reduce((prev, current) => {
-          const [name, ...value] = current.split('=')
-          prev[name] = value.join('=')
-          return prev
-        }, {})
-        let html = decodeURIComponent(obj?.userEmail)
-        document.getElementById('getUserEmail').innerHTML = html
-      })()</script>
 </body>
+
 </html>

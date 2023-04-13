@@ -16,49 +16,21 @@
             <h1>Login de Usuario</h1>
             <br>
             <form action="login" method="post" autocomplete="off">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Ingrese email</label>
-                    <input type="email" class="form-control" name="username" id="email" required>
+                <div class="form-group">
+                    <label for="emailUser">Ingrese su email</label>
+                <input id="emailUser" class="form-control" type="email" name="emailUser" required>
                 </div>
-    
-                <div class="mb-3">
-                    <label for="password" class="form-label">Ingrese contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password" required>
+                <div class="form-group">
+                    <label for="passwordUser">Ingrese su contraseña</label>
+                <input id="passwordUser" class="form-control" type="password" name="passwordUser" required>
                 </div>
-    
                 <button class="btn btn-success mt-3">Enviar</button>
             </form>
-            
             <div class="text-left">
-                <button class="btn btn-success my-3" onclick="location.href='/register'">Crear una cuenta</button>
-            </div>
+                <button class="btn btn-success my-3" onclick="location.href = '/register'">Ir a Registtarse</button>
+                </div>
         </div>
     </div>
-
-<script>
-function getUserName(){
-    fetch('/register')
-        .then(async (response) => {
-            const data = await response.json()
-            userName(data)
-        })
-}
-
-function userName(name) {
-    const html = name.map((name) => {
-      return `<h3> ${name.name} </h3>`
-    }).join(' ')
-  document.getElementById('nombre').innerHTML = html
-}
-    
-getUserName()
-    .then(nombres => {
-        return userName(nombres)})
-    .then(html => {
-        document.getElementById('getUserName').innerHTML = html
-    })  
-
-</script>    
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-//Muestra los productos en el Html
+/* //Muestra los productos en el Html
 let id = ''
 
 document.querySelectorAll(".cart").forEach(
@@ -36,3 +36,4 @@ btnComprar.addEventListener('click', async e => {
 
     console.log('btnComprar')
 })
+ */

@@ -1,4 +1,4 @@
-import { productosDao } from "../../src/daos/daos.js";
+/* import { productosDao } from "../../src/daos/daos.js";
 
 //Mostramos los productos en el html
 const render = async () => {
@@ -23,3 +23,4 @@ const render = async () => {
 }
 
 render();
+ */

@@ -20,7 +20,7 @@ socket.on('productos', productos => {
     makeHtmlTable(productos).then(html => {
         document.getElementById('productos').innerHTML = html
     })
-});
+}); 
 
 async function makeHtmlTable(productos) {
       const html = {productos};

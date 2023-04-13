@@ -1,13 +1,54 @@
 [
-{ "author": "Pablo", 
-   "text": "Hola, que tal?" 
-},
-
-{ "author": "Marcelo", 
-  "text": "muy bien y tu?"
-},
-  
-{ "author": "Belen", 
-  "text": "Hola!!" 
-}
+  {
+    "author": {
+      "mail": "mica@hotmail.com",
+      "name": "admin",
+      "lastName": "admin",
+      "age": 30,
+      "username": "Mica1",
+      "avatar": "https://www.iconfinder.com/icons/4715018/avatar_people_person_profile_user_woman_icon"
+    },
+    "text": "Bienvenidos",
+    "date": "16/4/2023 4:37:56 PM",
+    "id": 1
+  },
+  {
+    "author": {
+      "mail": "mauri@hotmail.com",
+      "name": "Mauri",
+      "lastName": "Mauri",
+      "age": 27,
+      "username": "Mauri1",
+      "avatar": "https://www.iconfinder.com/icons/5929159/avatar_doctor_health_hospital_medical_coronavirus_covid19_icon"
+    },
+    "text": "Hola",
+    "date": "16/4/2023 4:37:56 PM",
+    "id": 2
+  },
+  {
+    "author": {
+      "mail": "ana@hotmail.com",
+      "name": "Ana",
+      "lastName": "Ana",
+      "age": "61",
+      "username": "Ana1",
+      "avatar": "https://www.iconfinder.com/icons/4715027/avatar_people_person_profile_user_woman_icon"
+    },
+    "text": "Hola",
+    "date": "16/4/2023 4:37:56 PM",
+    "id": 3
+  },
+  {
+    "author": {
+      "mail": "aldo@hotmail.com",
+      "name": "Aldo",
+      "lastName": "Aldo",
+      "age": "61",
+      "username": "Aldo",
+      "avatar": "https://www.iconfinder.com/icons/4714994/avatar_people_person_profile_student_user_icon"
+    },
+    "text": "Hola",
+    "date": "16/4/2023 4:41:41 PM",
+    "id": 4
+  }
 ]
