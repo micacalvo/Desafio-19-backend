@@ -1,4 +1,4 @@
-import path from 'path'
+/* import path from 'path'
 
 export const getErrorController = (req, res ) => {
     if(req.session.route == 'register') {
@@ -9,4 +9,4 @@ export const getErrorController = (req, res ) => {
         route: req.session.route
     })
     req.session.destroy()
-}
+} */

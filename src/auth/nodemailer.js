@@ -1,4 +1,4 @@
-import { createTransport } from 'nodemailer';
+/* import { createTransport } from 'nodemailer';
 import { userMailAdmin, passMailAdmin } from '../config.js';
 import { logInfo, logError } from '../loggers/loggers.js';
 
@@ -62,3 +62,4 @@ export const sendMailNewCart = async (nombre, email, cart) => {
 }
 
 
+ */

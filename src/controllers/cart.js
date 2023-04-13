@@ -1,4 +1,4 @@
-import { carritosDao, usuariosDao } from "../daos/daos.js"
+/* import { carritosDao, usuariosDao } from "../daos/daos.js"
 import { sendMailNewCart } from "../auth/nodemailer.js"
 import { sendMessageNewCart } from "../auth/twilio.js"
 
@@ -84,3 +84,4 @@ export const postCartBuyController = async (req, res) => {
         res.redirect('/login.html')
     }
 }
+ */

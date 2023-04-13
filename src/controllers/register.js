@@ -1,4 +1,4 @@
-import { usuariosDao } from "../daos/daos.js"
+/* import { usuariosDao } from "../daos/daos.js"
 import { sendMailNewUser } from "../auth/nodemailer.js"
 import { sendWhatsAppNewUser, sendSMSNewUser } from "../auth/twilio.js"
 
@@ -33,4 +33,4 @@ export const postRegisterController = async (req, res) => {
 
 export const getRegisterController = (req, res) => {
     res.redirect('/register.html')
-}
+} */

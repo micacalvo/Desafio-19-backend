@@ -1,4 +1,4 @@
-import twilio from 'twilio'
+/* import twilio from 'twilio'
 //import {twilioSID, twilioToken, twilioMessagingServiceSid, twilioWhatsAppPhoneNumber, adminWhatsAppPhoneNumber, adminPhoneNumber, twilioPhoneNumber} from '../config.js'
 import { logInfo, logError } from '../loggers/loggers.js'
 
@@ -83,4 +83,4 @@ export const sendMessageNewCart = async (name, email, cart) => {
 
 
 
-    
+     */

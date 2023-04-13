@@ -1,4 +1,4 @@
-import { usuariosDao } from "../daos/daos.js"
+/* import { usuariosDao } from "../daos/daos.js"
 
 export const postLoginController = async (req, res, next) => {
     const usuarios = await usuariosDao.getAll()
@@ -16,4 +16,4 @@ export const postLoginController = async (req, res, next) => {
 
 export const getLoginController = (req, res) => {
     res.redirect('login.html')
-}
+} */

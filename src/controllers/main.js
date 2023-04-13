@@ -1,4 +1,4 @@
-import { usuariosDao, productosDao } from "../daos/daos.js"
+/* import { usuariosDao, productosDao } from "../daos/daos.js"
 
 export const getHomeController = async (req, res) => {
     if (req.isAuthenticated()) {
@@ -13,3 +13,4 @@ export const getHomeController = async (req, res) => {
         res.redirect('/login.html')
     }
 }
+ */

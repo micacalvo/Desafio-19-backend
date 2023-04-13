@@ -1,16 +1,17 @@
-//Normalizr
-import { normalize, schema} from 'normalizr';
+import { normalize, schema, } from 'normalizr'
 
-//Definimos un esquemas de autores
-const authorSchema = new schema.Entity('authors', {}, {idAttribute:"mail"});
-//Esquemas de mensajes
+// Definimos un esquema de autor
+const authorSchema = new schema.Entity('authors',{}, {idAttribute:"mail"});
+
+// Definimos un esquema de mensaje
 const textSchema = new schema.Entity('text');
-//Esquema de posts
+
+// Definimos un esquema de posts
 const mensajeSchema = new schema.Entity('messages', {
     author: authorSchema,
     text: [textSchema]
-});
+})
 
 const normalizarMensajes = (mensajesConId) => normalize(mensajesConId, [mensajeSchema])
 
-export {normalizarMensajes}
+export { normalizarMensajes }

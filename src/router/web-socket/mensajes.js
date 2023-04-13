@@ -1,25 +1,33 @@
-import ContenedorMemoria from '../../contenedores/ContenedorMemoria.js';
-const ArchivoMensajes = new ContenedorMemoria("mensajes");
-import {normalizarMensajes} from '../../normalizacion/export.js';
-import {logError} from '../../loggers/loggers.js';
+import mensajesApi from '../../api/mensajes.js'
+import { normalizarMensajes } from '../../normalizacion/export.js'
 
-//Mensajes 
-async function manejarEnvíoDeMensajes() {
+export default async function configurarSocket(socket, sockets) {
     try {
-        const mensajes = await ArchivoMensajes.getAll()
-        return normalizarMensajes(mensajes)
+        socket.emit('mensajes', normalizarMensajes(await mensajesApi.listarAll()));
     } catch (error) {
         logError(error.message)
         return []
     }
-}
-
-export default async function configurarSocket(socket, sockets) {
-    socket.emit('mensajes', await manejarEnvíoDeMensajes());
 
     socket.on('nuevoMensaje', async mensaje => {
         mensaje.date = new Date().toLocaleString()
-        await ArchivoMensajes.save(mensaje)
-        sockets.emit('mensajes', await manejarEnvíoDeMensajes());
+        try {
+            await mensajesApi.guardar(mensaje)
+        } catch (error) {
+            logError(`error al guardar producto: ${error.message}`)
+        }
+        sockets.emit('mensajes', normalizarMensajes(await mensajesApi.listarAll()));
     })
 }
+
+/*
+export default async function configurarSocket(socket, sockets) {
+    socket.emit('mensajes', normalizarMensajes(await mensajesApi.listarAll()));
+
+    socket.on('nuevoMensaje', async mensaje => {
+        mensaje.date = new Date().toLocaleString()
+        await mensajesApi.guardar(mensaje)
+        sockets.emit('mensajes', normalizarMensajes(await mensajesApi.listarAll()));
+    })
+}
+*/

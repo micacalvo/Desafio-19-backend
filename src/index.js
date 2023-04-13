@@ -1,92 +1,120 @@
-import express from 'express';
-import session from 'express-session';
-import mongoSession from './contenedores/ContenedorSession.js';
-import passport from 'passport';
+import cluster from 'cluster';
+import config from './config/config.js'
 
-import {Server as HTTPServer} from 'http';
-import {Server as IOServer} from 'socket.io';
-
-import productosApi from './router/api/productosApi.js';
-import processApi from './router/api/processApi.js'
-
-import productosWebRouter from './router/web/main.js';
-import mensajes from './router/web-socket/mensajes.js';
-import productos from './router/web-socket/productos.js'
-
-//Rutas web
-import {login} from './router/web/login.js'
-import {register} from './router/web/register.js'
-import {error} from './router/web/error.js'
-import {main} from './router/web/main.js'
-import {cart} from './router/web/cart.js'
-import {logout} from './router/web/logout.js'
-
-//Compression
 import compression from 'compression'
+import cookieParser from 'cookie-parser'
+import express from 'express'
+import session from 'express-session'
+import passport from 'passport'
 
-//Loggers
-import { logInfo, logError, logWarning } from './loggers/loggers.js'
+import { logInfo, logWarning } from '../src/loggers/loggers.js'
+
+import path from 'path'
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import { Server as HttpServer } from 'http'
+import { Server as Socket } from 'socket.io'
+
+import productosApiRouter from '../src/router/api/productosApi.js'
+import randomsApiRouter from '../src/router/api/processApi.js'
+import authWebRouter from '../src/router/web/auth.js'
+import homeWebRouter from '../src/router/web/home.js'
+import infoWebRouter from '../src/router/web/info.js'
+
+import addMensajesHandlers from '../src/router/web-socket/mensajes.js'
+import addProductosHandlers from '../src/router/web-socket/productos.js'
+
+import ProductosController from '../src/controllers/Productos.controller.js'
+import auth from '../src/router/web/auth.js'
+import {api} from '../src/api/productos.js'
+import { graphqlHTTP } from 'express-graphql'
+import ProductosSchema from '../src/graphql/schema.js'
+import { obtenerProducto, obtenerProductos, eliminarProducto, agregarProducto, actualizarProducto } from '../src/graphql/resolvers.js'
 
 function server(){
-//Instancio servidor
+
+// instancio servidor, socket , api y passport
 const app = express()
+const httpServer = new HttpServer(app)
+const io = new Socket(httpServer)
 
-//Instancio el socket y API
-const httpServer = new HTTPServer(app)
-const io = new IOServer(httpServer)
+// configuro el socket
 
-//Configuro el socket
 io.on('connection', async socket => {
-    productos(socket, io.sockets)
-    mensajes(socket, io.sockets)
+    // console.log('Nuevo cliente conectado!');
+    addProductosHandlers(socket, io.sockets)
+    addMensajesHandlers(socket, io.sockets)
 });
 
-//Middlewares
-app.use(express.json()) //Porque trabajo con formularios
-app.use(express.urlencoded({extended: true})) //Para postman
+// configuro el servidor
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+// app.use(express.static(path.join(__dirname, 'public')))
+app.use(compression())
 
-/* app.set('public', './public')
-app.set('view engine', 'html')
- */
-//Middleware session
-app.use(session(mongoSession))
+app.set('view engine', 'ejs');
 
-// Middleware Passport
+app.use(cookieParser())
+// app.use(objectUtils.createOnMongoStore())
+app.use(session(config.session))
+
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Rutas del servidor API REST
-app.use(productosApi)
-app.use(processApi)
+// MIDDLEWARE PASSPORT
+app.use(passport.initialize())
+app.use(passport.session())
 
-//Rutas del servidor web
-app.use(productosWebRouter)
-app.use('/login', login)
-app.use('/logout', logout)
-app.use('/register', register)
-app.use('/error', error)
-app.use('/main', main)
-app.use('/cart', cart)
-app.get('*', (req, res) => {
-    res.redirect('/login')
+const sessions = auth
+app.use('/api/sessions', sessions)
+//req.session.passport.user
+
+// rutas del servidor API REST
+
+app.use(productosApiRouter)
+app.use(randomsApiRouter)
+
+// rutas del servidor web
+app.use(authWebRouter)
+app.use(homeWebRouter)
+app.use(infoWebRouter)
+
+// logging casos no manejados
+app.use('*', (req, res, next) => {
+    logWarning(`${req.method} ${req.originalUrl} - ruta inexistente!`)
+        next()
 })
 
-//Configuración de compression
-app.use(compression())
-
-//Configuración de loggers
-//Logging general(Es el de info)
+// logging general
 app.use((req, res, next) => {
     logInfo(`${req.method} ${req.url}`)
     next()
 })
 
-//Logging de warning cuando la ruta no existe (* -> ruta random)
-app.use('*', (req, res, next) => {
-    logWarning(`${req.method} ${req.originalUrl} - Ruta inexistente`)
-    next()
+// Test DTO
+app.get('/test', async (req, res) => {
+    const docs = await ProductosController.listarAllCotizaciones();
+    res.json(docs)
 })
+
+// Test MOCHA API
+app.use('/apiProductos', api)
+
+//  Api Rest con GraphQL
+app.use('/graphql', graphqlHTTP({
+    schema: ProductosSchema,
+    rootValue: {
+        obtenerProducto, 
+        obtenerProductos, 
+        eliminarProducto, 
+        agregarProducto,
+        actualizarProducto},
+    graphiql: true,
+}))
 
 return {
     listen: port => new Promise((resolve, reject) => {
@@ -101,3 +129,4 @@ return {
 }
 
 export {server}
+
