@@ -2,12 +2,7 @@ import cluster from 'cluster';
 import { cpus } from 'os'
 
 import { server } from './index.js'
-<<<<<<< HEAD
 import config from './config/config.js'
-=======
-import config from '../src/config/config.js'
->>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
-
 
 if (config.mode == 'CLUSTER' && cluster.isPrimary) {
 

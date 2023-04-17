@@ -18,7 +18,6 @@ export default async function configurarSocket(socket, sockets) {
         }
         sockets.emit('mensajes', normalizarMensajes(await mensajesApi.listarAll()));
     })
-<<<<<<< HEAD
 }
 
 /*
@@ -32,6 +31,3 @@ export default async function configurarSocket(socket, sockets) {
     })
 }
 */
-=======
-}
->>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37

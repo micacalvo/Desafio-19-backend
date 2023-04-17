@@ -55,31 +55,19 @@ export default {
     port: argv.port,
     mode: argv.mode,
     auth: argv.auth,
-<<<<<<< HEAD
     mongoLocal: {
-=======
-    fileSystem: {
-        path: process.env.FILESYSTEM
-      },
-      mongoLocal: {
->>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
         client: 'mongodb',
         cnxStr: process.env.MONGODB_LOCAL
     },
     mongoRemote: {
         client: 'mongodb',
-<<<<<<< HEAD
         cnxStr: process.env.URL_MONGO,
-=======
-        cnxStr: process.env.MONGODB_REMOTO,
->>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
         options: {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 // useCreateIndex: true,
                 // serverSelectionTimeoutMS: 5000,
         }    
-<<<<<<< HEAD
     },
     sqlite3: {
         client: 'sqlite3',
@@ -90,8 +78,6 @@ export default {
     },
     fileSystem: {
         path: process.env.FILESYSTEM
-=======
->>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
     }
 }
 

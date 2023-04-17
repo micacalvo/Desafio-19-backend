@@ -1,9 +1,9 @@
 import ContenedorMongodb from '../../contenedores/ContenedorMongodb.js';
-import UsuariosSchema from '../../schemas/usuariosSchema.js';
+import UsuariosModel from '../../UsuariosModel.js';
 
 class UsuariosDao extends ContenedorMongodb {
   constructor() {
-    super(UsuariosSchema);
+    super(UsuariosModel);
     this.contenedor = ContenedorMongodb.getInstance();
     this.contenedor.conectarDB();
   }
@@ -12,7 +12,7 @@ class UsuariosDao extends ContenedorMongodb {
 
   async buscarUsuarioPorEmail(email) {
     try {
-      const usuario = await UsuariosSchema.findOne({ email });
+      const usuario = await UsuariosModel.findOne({ email });
       return usuario;
     } catch (error) {
       console.error('Error al buscar usuario por email:', error);
@@ -22,10 +22,10 @@ class UsuariosDao extends ContenedorMongodb {
 
   async registrarUsuario(usuario) {
     try {
-      const userExist = await UsuariosSchema.findOne({ email: usuario.email });
+      const userExist = await UsuariosModel.findOne({ email: usuario.email });
       if (userExist) return false;
       usuario.password = objectUtils.createHash(usuario.password);
-      const newUser = new UsuariosSchema(usuario);
+      const newUser = new UsuariosModel(usuario);
       await newUser.save();
       return true;
     } catch (error) {

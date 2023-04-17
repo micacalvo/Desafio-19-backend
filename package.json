@@ -5,15 +5,9 @@
   "main": "main-nginx.js",
   "type": "module",
   "scripts": {
-<<<<<<< HEAD
     "start": "nodemon src/main-nginx.js",
     "test": "mocha test/apimocha.test.js",
     "server": "nodemon src/main-nginx.js",
-=======
-    "test": "mocha test/apimocha.test.js",
-    "start": "nodemon src/main-nginx.js",
-    "server": "nodemon index.js",
->>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
     "startProf": "0x src/main-nginx.js",
     "benchmark": "node script/benchmark.js"
   },
@@ -25,10 +19,6 @@
     "axios": "^1.3.4",
     "bcrypt": "^5.1.0",
     "chai": "^4.3.7",
-<<<<<<< HEAD
-=======
-    "cluster": "^0.7.7",
->>>>>>> 1fa89d55dfbb03cb604fd2afeef45de455495b37
     "compression": "^1.7.4",
     "connect-mongo": "^4.5.0",
     "cookie-parser": "^1.4.6",

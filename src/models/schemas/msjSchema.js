@@ -1,4 +1,4 @@
-import mongoose from ('mongoose')
+/* import mongoose from ('mongoose')
 
 const mensajesSchema = new mongoose.Schema({
   author: {
@@ -13,4 +13,4 @@ const mensajesSchema = new mongoose.Schema({
   date: { type: String, required: true }
 })
 
-export default mongoose.model('mensajes', mensajesSchema)
+export default mongoose.model('mensajes', mensajesSchema) */
